@@ -54,7 +54,7 @@ class WallE():
 
     #passed to the subscriber
     def callback(self,msg): 
-        self.angle=self.getSteerAngle(.4, msg.ranges, 540, 930, .03, -1, 1) #left wall follow (0 = all the way right in LiDAR scan, 540 = middle, 1081 = all the way left
+        self.angle=self.getSteerAngle(.4, msg.ranges, 540, 930, .03, -1, 1) #left wall follow (0 = all the way right in LiDAR scan, 540 = middle, 1081 = all the way left)
         
     def shutdown(self): #is called whenever ctrl-c is hit to make sure the robot stops
         rospy.loginfo("Stopping the robot...")
