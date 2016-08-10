@@ -1,3 +1,3 @@
-Technical Work Week 3
+Week Three: Technical Work
 
   Goals:
