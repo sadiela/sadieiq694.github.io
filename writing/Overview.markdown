@@ -24,8 +24,9 @@ rest of the day would be devoted to more lab time.
 
   During the first week, the focus was on learning the basics of ROS, Linux, and
 Python, and taking the first steps in applying these skills through basic
-movement in our RACECARS. In the final challenge cars raced side by side
-following either the left or right wall.
+movement in our RACECARS. Students also learned about control systems that could
+be used to make the cars accomplish specific goals. In the final challenge cars 
+raced side by side following either the left or right wall.
 
   The content during the second week primarily concerned with “blob detection,”
 or, recognizing different colored sheets of paper and making decisions based on
