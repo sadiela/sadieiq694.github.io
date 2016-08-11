@@ -12,14 +12,12 @@ from numpy.core.defchararray import lower
 
 class WallE():
     
-    # variable to return distance to wall from callback
-    
     #making sure variables are initialized before called 
     angle=0
     e1=0
     e2=0
     
-    def clip(self,high,low,value):
+    def clip(self,high,low,value): #used to clip steering angle command
         if high<value:
             return high
         elif value<low:
@@ -31,7 +29,7 @@ class WallE():
         error = goal-(min(L[begin:end])) #distance between current and desird distance from wall
         Kp = .7
         Kd = .6
-        de= ((self.e1-self.e2)+(error-self.e1))/.2 #rate of change of error vals
+        de= ((self.e1-self.e2)+(error-self.e1))/.2 #rate of change of error vals, used to prevent oscillation
         self.e2=self.e1
         self.e1 = error
         u = Kp*error + Kd*de
@@ -58,14 +56,14 @@ class WallE():
         #sets the subscriber
         rospy.Subscriber('scan', LaserScan, self.callback)
         
-        # fill out fields in ackermann steering message (to go straight)
+         # set control parameters
+        speed = 2.0 # constant travel speed in meters/second
+        dist_trav = 20.0 # meters to travel in time travel mode
+        
+        # fill out fields in ackermann steering message
         drive_cmd = AckermannDriveStamped()
         drive_cmd.drive.speed = speed
-        drive_cmd.drive.steering_angle = self.angle
-        
-        # set control parameters
-        speed = 0.5 # constant travel speed in meters/second
-        dist_trav = 20.0 # meters to travel in time travel mode
+        drive_cmd.drive.steering_angle = self.angle 
         
         # output messages/sec (also impacts latency)
         rate = 10 
@@ -76,7 +74,7 @@ class WallE():
         ticks = int(time * rate) # convert drive time to ticks
         for t in range(ticks):
             drive_cmd.drive.steering_angle=self.angle
-            self.drive.publish(drive_cmd) # post this message
+            self.drive.publish(drive_cmd) # publishing drive command 
         
 if __name__ == '__main__':
   try:
