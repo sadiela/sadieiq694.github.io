@@ -23,6 +23,9 @@ Week One: Technical Work
   Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
 
   Process:
+  
+  My group decided to first implement bang-bang control, and then once we got that working, move on 
+  to PID. 
 
   Results:
   
@@ -34,4 +37,10 @@ Week One: Technical Work
   from all the rounds. In the final round three pairs of cars again raced best two out of three, this
   time vying for gold, silver, and bronze medals.
   
-  In the time trials, car 45, my group's car, came in fourth with a time of 8.645 seconds.
+  In the time trials, car 45, my group's car, came in fourth with a time of 8.645 seconds. In round
+  two, we were up against car 34, which did not complete any successful runs in the three attempts, 
+  so we advanced to the final round. In the final round the start was slightly different from in the
+  time trials; in the time trials, the timer would start as soon as the car moved across the start 
+  line, but in the finals it would start as soon as the start signal was given. The cars take time 
+  to get started, so this change was reflected in the final results. Our best time was 9.58 seconds, 
+  almost a full second slower than in the time trials. 
