@@ -52,10 +52,11 @@ time trials, one heat race against two other cars, and a final race with
 all nine cars on the grand prix race track.
 
   By the end of the program, students had gained confidence in ROS, Python, and
-Linux. In addition, participants gained valuable robotics experience and learned
-about how to be successful when working in groups. The seminars from experts in
-various STEM fields showed students the many directions one can go if he or she
-is interested in engineering and technology, and it was truly an amazing
-opportunity to get to hear all of them speak. The MIT Beaver Works Summer
-Institute was an incredible opportunity that greatly benefited all who had the
-privilege to attend.
+Linux. They learned about and implemented many algorithms that are used by 
+companies like Tesla and Google to program real autonomous vehicles.In addition,
+participants gained valuable robotics experience and learned about how to be 
+successful when working in groups. The seminars from experts in various STEM
+fields showed students the many directions one can go if he or she is interested 
+in engineering and technology, and it was truly an amazing opportunity to get to
+hear all of them speak. The MIT Beaver Works Summer Institute was an incredible 
+opportunity that greatly benefited all who had the privilege to attend.
