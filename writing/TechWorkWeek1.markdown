@@ -13,12 +13,17 @@ Week One: Technical Work
   
   In week one groups also were given the task of programming their RACECARs to wall follow -- or, 
   drive forward and stay a specific distance away from a wall -- for ~30 feet as quickly as possible. 
-  The cars had to be able to follow both the left and right walls and switch using the buttons on
-  the controller. Since all of the cars had the same speed cap (2 meters per second), the only way 
+  The cars had to be able to follow both the left and right walls and switch between the two on 
+  command. Since all of the cars had the same speed cap (2 meters per second), the only way 
   for teams to differentiate themselves was by having a better algorithm (in terms of computation 
-  time and oscillation levels). #EXPLAIN CONTROLLER
+  time and oscillation levels). 
 
   Approach:
+  
+      Introduction to the RACECAR Platform
+      
+      In order for groups to control their RACECARs, it was first crucial for them to understand 
+      them. 
   
   To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion
   Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
