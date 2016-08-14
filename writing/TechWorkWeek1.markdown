@@ -40,6 +40,9 @@ Figure 2: Hokuyo LiDAR and diagram depicting its range (1)
   * **IMU:** A Sparkfun 9 Degrees of Freedom "Razor" Inertial Measurment Unit was also present on each vehicle. The IMU has three sensors: a MEMS (MicroElectroMechanical System) three-axis accelerometer that assesses translational acceleration, a MEMS three-axis gyroscope that measures Coriolis force, and a three-axis Anisotropic MagnetoResisteance (AMR) magnetometer. The IMU is used to compute the current acceleration of the car.
   * **Passive Stereo Camera:** Unlike the diagram pictured above, the cars utilized during the Beaver Works program had only one camera: a Sensorlabs ZED Passive Stereo Camera with automatic depth perception from .7 to 20 meters and a field of view of 110 degrees. Although groups never utilized the depth perception functionality of the camera, it is made possible because the camera actually consisted of two separate cameras that would record the same image, use image processing software to identify matching points in the images, and then solve the translation between them to obtain depth data. The farther apart an object seems to the two cameras, the closer it is. 
 
+Each car CONTROLLER 
+  
+
 ###Basics of ROS
 
 Students also had to have a basic understanding of the Robot Operating System in order to complete any of the assigned tasks.
@@ -49,6 +52,10 @@ ROS is
   
 ###Control Systems
 To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
+
+###Challenge Approach
+
+After gaining the necessary background through lectures and short labs, groups were ready to start working on the implementation of a wall following node. In order to get more practice writing nodes, my group decided to first write one that used the bang bang control system and then write a PID node. 
 
 ##**Process:**
   
