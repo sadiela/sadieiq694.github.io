@@ -30,7 +30,7 @@ The robots used in this program were equipped with an advanced supercomputer and
   * **Processor:** The computer aboard the car is the Nvidia Jetson TX1 embedded systems module running Ubuntu for ARM. It is equipped with 256 CUDA cores that deliver over 1 TeraFLOPs of performance (2). The large number of GPU cores allows the TX1 to perform many parallel operations at the same time, making it extremely fast and efficient. The speed definitely comes in handy for the RACECAR's purposes; data could be processed and commands could be given in real time, which is very important for the reactive navigation the cars did for the vast majority of the time. 
   * **2D LiDAR:** Each car also had a 2D Hokuyo UST 10LX scanning laser rangefinder. The LiDAR has a range of .06m to ~10m and an accuracy of +/-40mm. It has a scan angle of 270 degrees and a speed of 40Hz. The laser scanner was one of the most frequently used scanners througout the duration of the program. It scans 270 degrees and splits it into 1081 points, returning a list of the distances (in meters) from the car that each of the points are. Specifically, it does this by sending out beams of light (lasers) and measuring the time it takes for them to come back. The following formula:
 
-                                                       D = ct/2                                                    (eq. 1)
+                                            D = ct/2                                                    (eq. 1)
 
 Where c = speed of light and t = time, can then be used to determine the distance (D). This data was vital as most steering decisions the car made (all of them during week one) were based upon it. 
  
@@ -42,11 +42,13 @@ Figure 2: Hokuyo LiDAR and diagram depicting its range (1)
 
 ###Basics of ROS
 
+Students also had to have a basic understanding of the Robot Operating System in order to complete any of the assigned tasks.
+
+ROS is 
  
   
 ###Control Systems
-  To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion
-  Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
+To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
 
 ##**Process:**
   
