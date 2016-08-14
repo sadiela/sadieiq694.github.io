@@ -30,7 +30,7 @@ The robots used in this program were equipped with an advanced supercomputer and
   * **Processor:** The computer aboard the car is the Nvidia Jetson TX1 embedded systems module running Ubuntu for ARM. It is equipped with 256 CUDA cores that deliver over 1 TeraFLOPs of performance (2). The large number of GPU cores allows the TX1 to perform many parallel operations at the same time, making it extremely fast and efficient. The speed definitely comes in handy for the RACECAR's purposes; data could be processed and commands could be given in real time, which is very important for the reactive navigation the cars did for the vast majority of the time. 
   * **2D LiDAR:** Each car also had a 2D Hokuyo UST 10LX scanning laser rangefinder. The LiDAR has a range of .06m to ~10m and an accuracy of +/-40mm. It has a scan angle of 270 degrees and a speed of 40Hz. The laser scanner was one of the most frequently used scanners througout the duration of the program. It scans 270 degrees and splits it into 1081 points, returning a list of the distances (in meters) from the car that each of the points are. Specifically, it does this by sending out beams of light (lasers) and measuring the time it takes for them to come back. The following formula:
 
-                                            D = ct/2                                                    (eq. 1)
+                                        D = ct/2                                                    (eq. 1)
 
 Where c = speed of light and t = time, can then be used to determine the distance (D). This data was vital as most steering decisions the car made (all of them during week one) were based upon it. 
  
@@ -52,6 +52,10 @@ ROS is
   
 ###Control Systems
 To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
+
+![PID](https://camo.githubusercontent.com/bbede27c5fa69f4764cf2727cb42740aa7d46b5b/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f332f33332f5049445f436f6d70656e736174696f6e5f416e696d617465642e676966)
+
+Figure 3: Animation showing the effects of changing PID values (3)
 
 ###Challenge Approach
 
@@ -83,3 +87,4 @@ After gaining the necessary background through lectures and short labs, groups w
 Sources 
 (1) Guldner, Owen. (2016) Introduction to the RACECAR Platform [Powerpoint slides]. Retrieved from https://drive.google.com/file/d/0B6jv7Ea8ZHnNZmZTbUdLWktyLW8/view
 (2) http://www.nvidia.com/object/jetson-tx1-module.html
+(3) https://commons.wikimedia.org/wiki/File:PID_Compensation_Animated.gif
