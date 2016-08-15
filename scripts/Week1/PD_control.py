@@ -13,14 +13,16 @@ from numpy.core.defchararray import lower
 class WallE():
     
     #making sure variables are initialized before called 
-    angle=0
-    e1=0
-    e2=0
+    angle = 0
+    e1 = 0
+    e2 = 0
+    right = True
+    death = False
     
-    def clip(self,high,low,value): #used to clip steering angle command
-        if high<value:
+    def clip(self, high, low, value): #used to clip steering angle command
+        if high < value:
             return high
-        elif value<low:
+        elif value < low:
             return low
         else:
             return value
@@ -38,9 +40,19 @@ class WallE():
     #passed to the subscriber
     def callback(self,msg):
         #get the laser information
-        self.angle=self.getSteerCmd(.4, msg.ranges, 200, 540, -1, 1)
+        if self.right: #right wall following
+            self.angle=self.getSteerCmd(.4, msg.ranges, 200, 540, -1, 1)
+        else: #left wall following
+            self.angle=self.getSteerCmd(.4, msg.ranges, 540, 900, -1, 1)
+        self.death = min(msg.ranges[525:555])<.5
         
-    def shutdown(self): #makes sure robot is stopped when ctrl-c is pressed
+    def callbackLeftRight(self, msg):
+        if (msg.buttons[0]):
+            self.left = True
+        elif msg.buttons[1]:
+            self.right = False
+        
+    def shutdown(self): #stops robot when ctrl-c is pressed
         rospy.loginfo("Stopping the robot...")
         self.drive.publish(AckermannDriveStamped())
         rospy.sleep(1)
@@ -53,8 +65,9 @@ class WallE():
         # publisher that sends motion commands
         self.drive = rospy.Publisher('/vesc/ackermann_cmd_mux/input/navigation', AckermannDriveStamped, queue_size=5)
         
-        #sets the subscriber
+        #sets the subscribers
         rospy.Subscriber('scan', LaserScan, self.callback)
+        rospy.Subscriber('vesc/joy', Joy, self.callbackLeftRight)
         
          # set control parameters
         speed = 2.0 # constant travel speed in meters/second
@@ -74,6 +87,12 @@ class WallE():
         ticks = int(time * rate) # convert drive time to ticks
         for t in range(ticks):
             drive_cmd.drive.steering_angle=self.angle
+            
+            if self.death: #safety implementation
+                drive_cmd.drive.speed=-.1
+            elif drive_cmd.drive.speed > 0:
+                drive_cmd.drive.speed = speed
+                
             self.drive.publish(drive_cmd) # publishing drive command 
         
 if __name__ == '__main__':
