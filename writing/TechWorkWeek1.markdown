@@ -22,7 +22,7 @@
       
 In order for groups to control their RACECARs, it was first crucial for them to understand them and all of their components. 
 ![RACECAR](https://cloud.githubusercontent.com/assets/18174572/17645837/ae61aabe-617e-11e6-96b2-f528a82376e1.png)
-Figure 1: Labeled illustration of the RACECAR used in this course (1); note that the cars used in the Beaver Works Summer Program did not have passive stereo cameras
+Figure 1: Labeled illustration of the RACECAR used in this course (1); note that the cars used in the Beaver Works Summer Program did not have active stereo cameras, and the passive cameras were mounted above the LiDAR where the active camera appears in this image.
 
 The robots used in this program were equipped with an advanced supercomputer and sensors that provided the data necessary for the algorithms to work. (1) 
   * **Chassis:** The basic frame of the vehicle is the Traxxas Rally 74076, a 1/10 scale RC car with four wheel drive and    Ackermann front wheel steering. It is capable of speeds up to 40 miles per hour, but this program's purposes this to 2 m/s (or 4.5 mph).
