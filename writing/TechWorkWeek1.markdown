@@ -24,7 +24,7 @@ In order for groups to control their RACECARs, it was first crucial for them to 
 ![RACECAR](https://cloud.githubusercontent.com/assets/18174572/17645837/ae61aabe-617e-11e6-96b2-f528a82376e1.png)
 Figure 1: Labeled illustration of the RACECAR used in this course (1); note that the cars used in the Beaver Works Summer Program did not have passive stereo cameras
 
-The robots used in this program were equipped with an advanced supercomputer and sensors that provided the data necessary for the algorithms to work. 
+The robots used in this program were equipped with an advanced supercomputer and sensors that provided the data necessary for the algorithms to work. (1) 
   * **Chassis:** The basic frame of the vehicle is the Traxxas Rally 74076, a 1/10 scale RC car with four wheel drive and    Ackermann front wheel steering. It is capable of speeds up to 40 miles per hour, but this program's purposes this to 2 m/s (or 4.5 mph).
   * **Processor:** The computer aboard the car is the Nvidia Jetson TX1 embedded systems module running Ubuntu for ARM. It is equipped with 256 CUDA cores that deliver over 1 TeraFLOPs of performance (2). The large number of GPU cores allows the TX1 to perform many parallel operations at the same time, making it extremely fast and efficient. The speed definitely comes in handy for the RACECAR's purposes; data could be processed and commands could be given in real time, which is very important for the reactive navigation the cars did for the vast majority of the time. 
   * **2D LiDAR:** Each car also had a 2D Hokuyo UST 10LX scanning laser rangefinder. The LiDAR has a range of .06m to ~10m and an accuracy of +/-40mm. It has a scan angle of 270 degrees and a speed of 40Hz. The laser scanner was one of the most frequently used scanners througout the duration of the program. It scans 270 degrees and splits it into 1081 points, returning a list of the distances (in meters) from the car that each of the points are. Specifically, it does this by sending out beams of light (lasers) and measuring the time it takes for them to come back. The following formula:
@@ -49,39 +49,39 @@ In addition, cars came with a controller (see above) that could be used to comma
 
 Students also had to have a basic understanding of the Robot Operating System (ROS) in order to complete any of the assigned tasks.
 
-ROS is an operating system that is used for robots. The overarching goal of the system is to support code reuse in robotics; before ROS, people had to start from scratch whenever they wanted to program a new robot, even though a lot of the code that they wrote had already written before. Because ROS is open source, meaning all source code is made available, ROS saves software developers a huge amount of time because they can reuse code written by others. This allows progress in robotics to be made much more quickly. ROS is a powerful, flexible (supports multiple languages and multi-machine systems) tool that is widely used in academia and industry and is supported by the Open Source Robotics Foundation (OSRF). 
+ROS is an operating system that is used for robots. The overarching goal of the system is to support code reuse in robotics; before ROS, people had to start from scratch whenever they wanted to program a new robot, even though a lot of the code that they wrote had already written before (4). Because ROS is open source, meaning all source code is made available, ROS saves software developers a huge amount of time because they can reuse code written by others. This allows progress in robotics to be made much more quickly. ROS is a powerful, flexible (supports multiple languages and multi-machine systems) tool that is widely used in academia and industry and is supported by the Open Source Robotics Foundation (OSRF). (5)
 
-One aspect of ROS that makes it so effective for robotics software development is how its design supports modularity. Most tasks that robots have to accomplish are complex and have many different components. Completing each component linearly is time consuming and does not take advantage of the Jetson TX1's many GPU cores. Luckily, ROS makes it very simple to employ a modular software design by allowing elaborate tasks to be broken into simpler pieces. Then, multiple parts of the problem can be solved at the same time, allowing programs to run much more quickly. 
+One aspect of ROS that makes it so effective for robotics software development is how its design supports modularity. Most tasks that robots have to accomplish are complex and have many different components. Completing each component linearly is time consuming and does not take advantage of the Jetson TX1's many GPU cores. Luckily, ROS makes it very simple to employ a modular software design by allowing elaborate tasks to be broken into simpler pieces. Then, multiple parts of the problem can be solved at the same time, allowing programs to run much more quickly. (5)
 
-ROS utilizes modularity by organizing programs into nodes. Nodes are processes performing specific computations in the ROS system. There can be as few as one and as many as one hundred in a single program. The nodes have to be able to communicate with each other, and they do that using messages and topics. Messages are strictly typed packets of data sent between ROS nodes. They are sent over topics: unidirectional communication links between ROS nodes. When a node wants to send data, it must **publish** a message to a specific topic, and the node that wants to receive that data must **subscribe** to that topic. Eah topic is linked to a single message type. It is important to note that one or more nodes may publish messages to a topic and one or more nodes can subscribe to any topic. In addition, an individual node can publish or subscribe to as many topics as it needs to. The ROS Master process is responsible for linking nodes together. It coordinates the peer-to-peer communication links between nodes. Nodes that wish to publish advertise to the ROS Master on the desired topic. Nodes that wish to subscribe to that topic tell the ROS Master, and it establishes a connection between the two nodes.
+ROS utilizes modularity by organizing programs into nodes. Nodes are processes performing specific computations in the ROS system. There can be as few as one and as many as one hundred in a single program. The nodes have to be able to communicate with each other, and they do that using messages and topics. Messages are strictly typed packets of data sent between ROS nodes. They are sent over topics: unidirectional communication links between ROS nodes. When a node wants to send data, it must **publish** a message to a specific topic, and the node that wants to receive that data must **subscribe** to that topic. Eah topic is linked to a single message type. It is important to note that one or more nodes may publish messages to a topic and one or more nodes can subscribe to any topic. In addition, an individual node can publish or subscribe to as many topics as it needs to. The ROS Master process is responsible for linking nodes together. It coordinates the peer-to-peer communication links between nodes. Nodes that wish to publish advertise to the ROS Master on the desired topic. Nodes that wish to subscribe to that topic tell the ROS Master, and it establishes a connection between the two nodes. (5)
  
   
 ###Control Systems
 To help us with this first challenge, a robotics software engineer from NASA's Jet Propulsion Laboratory (JPL), Kyle Edelberg, gave technical lectures on control systems that we could use.
 
-A simple definition of a control system is something that takes a system (specifically the RACECAR for the program's purposes) from state A to state B, the desired state. The controller is implemented in the software as the program(s) that tell the system what to do, and the system is the hardware (the RACECAR for Beaver Works' purposes).
+A simple definition of a control system is something that takes a system (specifically the RACECAR for the program's purposes) from state A to state B, the desired state. The controller is implemented in the software as the program(s) that tell the system what to do, and the system is the hardware (the RACECAR for Beaver Works' purposes). (6)
 
-There are two basic types of control that a system can use: open loop control and closed loop control. 
+There are two basic types of control that a system can use: open loop control and closed loop control. (6)
 
-Open loop control is the more primitive of the two types of control system. The controller tells the system to do something and recieves no feedback to let it know how close it is to completing the task. An example of open loop control is if a RACECAR had to move 10m and the top speed was 2m/s, so the program told the car to run at full speed forward for five seconds. The car would run for the five seconds and stop, but the controller would have no idea if it was successful. In addition, this method does not account for many errors such as the wheels sticking, slipping, or being misaligned, and if any of that happened, the program would not be able to adjust and achieve the desired state. Open loop control is not usually used, but sometimes when the reaction time for the controller to adjust its plan would be too slow anyway or during testing it is used.
+Open loop control is the more primitive of the two types of control system. The controller tells the system to do something and recieves no feedback to let it know how close it is to completing the task. An example of open loop control is if a RACECAR had to move 10m and the top speed was 2m/s, so the program told the car to run at full speed forward for five seconds. The car would run for the five seconds and stop, but the controller would have no idea if it was successful. In addition, this method does not account for many errors such as the wheels sticking, slipping, or being misaligned, and if any of that happened, the program would not be able to adjust and achieve the desired state. Open loop control is not usually used, but sometimes when the reaction time for the controller to adjust its plan would be too slow anyway or during testing it is used. (6)
 
-Closed loop control is usually preferred over open loop. In this control method, the controller recieves feedback from the system to help it achieve the desired value. Closed loop control is what groups used for their wall following algorithms. 
+Closed loop control is usually preferred over open loop. In this control method, the controller recieves feedback from the system to help it achieve the desired value. Closed loop control is what groups used for their wall following algorithms. (6)
 
 ![Open Loop Control (Wall Follow)](https://cloud.githubusercontent.com/assets/18174572/17651717/ff97b6e6-623a-11e6-8448-2cbcaff08204.png)
 
-Figure 3: Diagram depicting open loop control for wall following (6)
+Figure 3: Diagram depicting closed loop control for wall following (6)
 
-The above diagram illustrates how closed loop control works for wall following. A desired distance (Ddes) is inputed into the controller as well as the current distance(D) from the wall, which the system's sensors send to the controller. The controller then subtracts the current distance from the desired distance to obtain the error, which the system wants to  be as close to zero as possible. Based on the error, the controller sends steering commands to the system, which sends more data back to the controller in a continuous loop. 
+The above diagram illustrates how closed loop control works for wall following. A desired distance (Ddes) is inputed into the controller as well as the current distance(D) from the wall, which the system's sensors send to the controller. The controller then subtracts the current distance from the desired distance to obtain the error, which the system wants to  be as close to zero as possible. Based on the error, the controller sends steering commands to the system, which sends more data back to the controller in a continuous loop. (6)
 
 Mr. Edelburg introduced us to two types of closed loop control that could be used: bang bang control and PID control.
 
-Bang bang control is the simplest form of closed loop control. It looks at the error value (Ddes - D). If it's positive, the car is too close to the wall, so the controller tells the car to steer as far as possible away from the wall (if following the right wall, the steer command would be -1, which is a full left). If the error value is negative, the car is too far away from the wall so the program tells the car to steer all the way towards the wall (again, in a right wall following scenario the command would be 1, full right). Bang bang control is effective, but causes significant oscillations in the car's forward motion. This means the car is traveling farther than if it were able to drive straight, which is not ideal when teams wanted their cars to move as quickly as possible. 
+Bang bang control is the simplest form of closed loop control. It looks at the error value (Ddes - D). If it's positive, the car is too close to the wall, so the controller tells the car to steer as far as possible away from the wall (if following the right wall, the steer command would be -1, which is a full left). If the error value is negative, the car is too far away from the wall so the program tells the car to steer all the way towards the wall (again, in a right wall following scenario the command would be 1, full right). Bang bang control is effective, but causes significant oscillations in the car's forward motion. This means the car is traveling farther than if it were able to drive straight, which is not ideal when teams wanted their cars to move as quickly as possible. (6)
 
-PID control, or, Proportional Integral Derivative control, is another fairly simple control scheme that makes use of the following equation:
+PID control, or, Proportional Integral Derivative control, is another fairly simple control scheme that makes use of the following equation (6):
 
                               u = kp*e + ki*∫e + kd*ẻ                                               (eq. 2)
 
-Where u is the steering command (a number between -1 and 1, or, full left and full right), kp, ki, and kd are experimentally determined constants, e is the error, ∫e is the summation of the errors (integral with respect to time), and ẻ is the derivative of the errors. Each of the terms of this equation has a specific goal. The kp term initially brings the error value close to zero, the ki term drives it all the way down, and the kd value helps with stability, i.e., minimizes oscillations. Most groups opted to use PID control in week one's final challenge. 
+Where u is the steering command (a number between -1 and 1, or, full left and full right), kp, ki, and kd are experimentally determined constants, e is the error, ∫e is the summation of the errors (integral with respect to time), and ẻ is the derivative of the errors. Each of the terms of this equation has a specific goal. The kp term initially brings the error value close to zero, the ki term drives it all the way down, and the kd value helps with stability, i.e., minimizes oscillations (6). Most groups opted to use PID control in week one's final challenge. 
 
 ![PID](https://camo.githubusercontent.com/bbede27c5fa69f4764cf2727cb42740aa7d46b5b/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f332f33332f5049445f436f6d70656e736174696f6e5f416e696d617465642e676966)
 
@@ -133,17 +133,21 @@ Full code for both algorithms can be found in the scripts folder of this github 
 
 ##**Sources** 
 
+Cited
+
 (1) Guldner, Owen. (2016) Introduction to the RACECAR Platform [Powerpoint slides]. Retrieved from https://drive.google.com/file/d/0B6jv7Ea8ZHnNZmZTbUdLWktyLW8/view
 
-(2) http://www.nvidia.com/object/jetson-tx1-module.html
+(2) "Jetson TX1 Embedded Systems Module from NVIDIA Jetson." __Nvidia.__ N.p., n.d. Web. 15 Aug. 2016. <http://www.nvidia.com/object/jetson-tx1-module.html>.
 
-(3) https://commons.wikimedia.org/wiki/File:PID_Compensation_Animated.gif
+(3) PID Compensation Animated. Digital image. Commons.wikimedia.org. N.p., 28 May 2015. Web. 13 Aug. 2016. <https://commons.wikimedia.org/wiki/File:PID_Compensation_Animated.gif>.
 
-(4) http://wiki.ros.org/ROS/Introduction
+(4) Thomas, Dirk. "Introduction." __ROS.org__. 22 May 2014. Web. 12 August 2016. <http://wiki.ros.org/ROS/Introduction>.
 
 (5) Boulet, Michael T.. (2016) Introduction to ROS [Powerpoint slides]. Retrieved from https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqjhdwd8mg0c3/B__Introduction_to_ROS_Lecture.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&Expires=1471210259&Signature=bMe%2FqyItVgZueiPzbiPhWCLqLYQ%3D
 
 (6) Edelberg, Kyle. "Control Systems." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 13 July 2016. Lecture.
+
+Referenced
 
 (7) Edelberg, Kyle. "Control Systems: Application." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 14 July 2016. Lecture.
 
