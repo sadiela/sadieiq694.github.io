@@ -22,7 +22,7 @@ In short, this program alleviated a lot of my stress in terms of  “choosing”
 ##Program
 
 Thoughts on program improvement
-I have very little to say in terms of how this program could be improved
+I have very little to say in terms of how this program could be improved. The one thing that I think the program directors and instructors should consider is keeping the teams the same througout all four weeks. One thing that Ms. Connor 
 Keep teams the same throughout the program
 This is not the fault of the program whatsoever, but during week 3 there was very little structure for a vast majority of lab time. This was because there were difficulties with getting the localization and mapping packages working, but just as a general rule, more structure is better. Less time is wasted when everyone knows exactly what they are supposed to do 
 
