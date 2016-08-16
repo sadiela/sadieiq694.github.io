@@ -75,7 +75,15 @@ In terms of task delegation, our group split so some of us were working on blob 
   
 ##Process
 
-There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. However, once we figured it out,
+There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. 
+
+We did not get to test until the final day. Before testing the robot on the floor, we put it on a box so we could see what the wheels were doing without it actually moving. We then held a green blob in front of the camera and moved it around to see if the car was successfully steering towards the blob. Once we were sure this worked, we were ready to test it on the floor. 
+
+To make sure it was making it into the visual servo box, we added temporary code to made the robot stop right before the transition from visual servoing to wall following. This allowed us to tweak the desired area for the blob until the car stopped right inside the box. 
+
+![WeeklyChallenge](https://cloud.githubusercontent.com/assets/18174572/17713920/5cdf9df0-63cb-11e6-810f-9680f78509df.png)
+
+Figure 6: Diagram of Week 2 Challenge
 
 ##Results
 
