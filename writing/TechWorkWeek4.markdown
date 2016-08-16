@@ -19,7 +19,7 @@ WHAT ACTUALLY HAPPENED
 
 ##Results
 
-Despite multiple hardware issues that took up huge amounts of our time, our group managed to successfully complete all three time trials. 
+Despite multiple hardware issues that took up huge amounts of our time, our group managed to successfully complete all three time trials.
 - third in time trials
 - second in heat
 - fourth in final grand prix
