@@ -26,13 +26,56 @@ The HSV model works better for blob detection because it is much more robust und
 
 ###Intro To OpenCV Tools
 
+Students used OpenCV to process the images received from the ZED camera. Specific tools in the library that were particularly useful for week two's challenge were:
 
+* **Creating A Mask**: Using cv2.inRange, one can select upper and lower bounds for color values and create a "mask" that highlights a specific color. This method can be used to initially identify blobs of specific colors.
+
+![mask](https://cloud.githubusercontent.com/assets/18174572/17709879/deab533c-63b8-11e6-95a7-1b490beab197.png)
+
+Figure 2: Side by side of original image and red mask 
+
+* **Creating a Contour**: Contours are essentially curves that join all continuous points along a boundary having the same color. They work best on binary images, which is why a mask is used to isolate the specific colors. By using the function cv2.findContours, one can identify contours using the binary image. The contours can then be applied to the original image using cv2.drawContours.
+ 
+![contour](https://cloud.githubusercontent.com/assets/18174572/17710445/4aed708c-63bb-11e6-83fa-fa6570613979.png)
+
+Figure 3: Image with contours applied
+
+* **Using Moments**: Moments (cv2.moments) can be used to find the center of contours, which is useful to know when visual servoing. One can compare the x coordinate of the center of a contour (that outlines the desired blob) to the x coordinate of the center of the camera's frame and make steering decisions based on the difference. 
+
+![center](https://cloud.githubusercontent.com/assets/18174572/17711449/ac908e7e-63bf-11e6-8275-5bdbf1ecbd89.png)
+
+Figure 4: Image with center identified
+
+* **Creating a Bounding Rectangle**: cv2.boundingrect, as the name suggests, draws a rectangle around a contour. It is also one of several functions that can be used to determine the rough area of a blob, as it computes both height and width. However, this approach to finding the area is only accurate when the blob is rectangular in shape.
+
+![bounding rectangle](https://cloud.githubusercontent.com/assets/18174572/17712492/28f3e264-63c4-11e6-9bed-37eb7119b0af.png)
+
+Figure 5: Side by side view of red contour and bounding rect based off of contour
+
+These tools were primarily what groups used to work with blobs for week two's challenge.
+
+###Custom Messages
+
+Custom messages were another important tool introduced to students. Sometimes it is necessary to communicate multiple pieces of information between nodes of varying different types. This is made possible by custom message types. An example is as follows:
+
+      Header header
+      std_msgs/String color
+      std_msgs/Float64 size
+      geometry_msgs/Point location
+
+This is the message type my group used in the week two challenge to communicate information about the blob. The custom message allowed the color, size, and location of the blob to be sent as a group instead of individually. 
 
 ###Challenge Approach
 
+We decided to handle the challenge tasks with two nodes. One would handle vision and blob detection and one would handle motion commands. By writing fewer nodes, we hoped to save time that we could spend working with image processing, which proved to be difficult in the preliminary labs. 
 
+The blob detection node would determine the size, location, and color of the blob and pass it to the motion control node, which would use that information to make all driving decisions.
+
+In terms of task delegation, our group split so some of us were working on blob detection and others worked on motion commands. Again, time played a big role in this decision. It would have been preferable for the entire group to work through everything together to ensure unanimous comprehension of the code, but because we went with a "divide and conquer" approach. 
   
 ##Process
+
+There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. However, once we figured it out,
 
 ##Results
 
@@ -51,3 +94,9 @@ Cited
 (2) Detry, Renaud. (2016) Image Processing [Powerpoint slides]. Retrieved from https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqv1h3yfxfl3jp/11imageprocessingcv.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&Expires=1471369483&Signature=o4VdJxFZKf5dYsmyXqz2MLrHVAE%3D
 
 (3) http://www.livescience.com/32559-why-do-we-see-in-color.html
+
+(4) http://refreshwichitafalls.com/images/challenge-foursquare.png
+
+(5) http://docs.opencv.org/trunk/d4/d73/tutorial_py_contours_begin.html#gsc.tab=0
+
+(6) http://www.clear-mind-meditation-techniques.com/image-files/simple-colored-shapes.jpg
