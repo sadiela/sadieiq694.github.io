@@ -10,6 +10,14 @@ The weekly challenge did not required groups to implement any localization or ma
 
 ##Approach
 
+###SLAM Algorithm
+
+###Potential Fields
+
+###Challenge Approach 
+
+My team decided to use two nodes for the weekly challenge. One would control the cars motion and implement a potential field algorithm. The other would detect and record images of blobs that the car's camera captured. These nodes were completely independent of each other and did not communicate at all. We decided to have two independent nodes because it was not necessary for them to communicate. This week, we focused on perfecting the simplest algorithms that could accomplish our goals.  
+
 ##Process
 
 ##Results
