@@ -7,7 +7,7 @@ import numpy as np
 #node-specific imports
 from sensor_msgs.msg import Image
 from std_msgs.msg import *
-from student.msg import blob_detect
+from student.msg import blob_detect #student was the name of the package containing all of our code
 from geometry_msgs.msg import Point
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
