@@ -14,7 +14,23 @@ Again, some background knowledge is necessary before my group's approach can be 
 
 A computer deals with color images as 2D pixel arrays where each pixel encodes a color. There are several ways in which computers can represent colors, but in the Beaver Works course students mostly worked with RGB and HSV formats.
 
-RGB
+The human eye perceives color using specialized cells called cones. There are three different types of cones in our eyes that all respond most strongly to different wavelengths of light; red, green, or blue. RGB representation is based off the human visual system. Each pixel in the 2D array that represents an image encodes a color with the triplet (R, G, B). Because color pixels are typically encoded in 24 bits, or, 8 bits per color, the R, G, and B components take values between 0 and 255. (0, 0, 0) encodes black, (255, 255, 255) encodes white, and any triplet in which all three values are the same represents gray. (255, 0, 0) would be a 'perfect' red.
+
+An alternative to RGB is the HSV color model. This system also uses triplets to represent colors, but the three values represent hue, saturation, and value. Hue is an angle out of 180 degrees. 0 degrees is red, 60 degrees is green, and 120 degrees is blue. Saturation is out of 255 and represents the intensity of the color. Value is also on a scale of 0 to 255 and is a measure of the brightness of a color.
+
+![HSV Chart] (https://cloud.githubusercontent.com/assets/18174572/17703787/f45c870e-63a0-11e6-86b2-d12b2cd06902.png)
+
+Figure 1: Diagram showing how colors change in accordance with HSV values
+
+The HSV model works better for blob detection because it is much more robust under illumination changes.
+
+###Intro To OpenCV Tools
+
+
+
+###Challenge Approach
+
+
   
 ##Process
 
@@ -33,3 +49,5 @@ Cited
 (1) http://opencv.org/about.html
 
 (2) Detry, Renaud. (2016) Image Processing [Powerpoint slides]. Retrieved from https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqv1h3yfxfl3jp/11imageprocessingcv.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&Expires=1471369483&Signature=o4VdJxFZKf5dYsmyXqz2MLrHVAE%3D
+
+(3) http://www.livescience.com/32559-why-do-we-see-in-color.html
