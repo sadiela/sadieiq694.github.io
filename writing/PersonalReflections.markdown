@@ -4,7 +4,7 @@
 
 The Beaver Works Summer Institute proved to be an invaluable experience for me. I learned more than I could have ever imagined: about communication, about the future and about myself.
 
-The communications lectures given on Tuesdays and Thursdays were a very valuable part of the program. I learned
+Before this program, I neither enjoyed group work nor appreciated its value. For the most part I viewed team projects as a nuisance and did not value the input of fellow group members. I learned a lot about how to be successful when working with others.
 In terms of working as a team:
 One thing from the communications lectures that resonated with me
 Building trust through vulnerability
