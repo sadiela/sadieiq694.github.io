@@ -2,9 +2,9 @@
 
 ##Personal
 
-The Beaver Works Summer Institute proved to be an invaluable experience for me. I learned more than I could have ever imagined: about communication, about the future and about myself.
+The Beaver Works Summer Institute proved to be an invaluable experience for me. I learned more than I could have ever imagined about communication, about the future, and about myself.
 
-Before this program, I neither enjoyed group work nor appreciated its value. For the most part I viewed team projects as a nuisance and did not value the input of fellow group members. I learned a lot about how to be successful when working with others.
+Before this program, I neither enjoyed group work nor appreciated its value. For the most part I viewed team projects as a nuisance and did not respect the input of fellow group members. The communication lectures completely reversed my attitude towards working with others. I learned a lot about how to be successful when working with others.
 In terms of working as a team:
 One thing from the communications lectures that resonated with me
 Building trust through vulnerability
@@ -22,7 +22,7 @@ In short, this program alleviated a lot of my stress in terms of  “choosing”
 ##Program
 
 Thoughts on program improvement
-I have very little to say in terms of how this program could be improved. The one thing that I think the program directors and instructors should consider is keeping the teams the same throughout all four weeks. One thing that Ms. Connor
+I have very little to say in terms of how this program could be improved. The one thing that I think the program directors and instructors should consider is keeping the teams the same throughout all four weeks. One thing that Ms. Connor stressed during the communications lectures was the importance of building trust within a team. She also explained that trust takes time to build. When the teams are randomized each week, people have no opportunity to build the strong trust that is necessary for a group to be successful.
 Keep teams the same throughout the program
 This is not the fault of the program whatsoever, but during week 3 there was very little structure for a vast majority of lab time. This was because there were difficulties with getting the localization and mapping packages working, but just as a general rule, more structure is better. Less time is wasted when everyone knows exactly what they are supposed to do
 
