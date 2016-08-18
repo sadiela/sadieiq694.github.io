@@ -12,7 +12,7 @@ The mini grand prix consisted of time trials (three attempts per car) with the c
 
 ##Approach
 
-Our plan going into week four was to direct most of our energy towards the time trials and grand prix race. We already had functional code for the first technical challenge and a solid start on code for the second one, so the grand prix was what we had to do the most work on and where we dedicated most of our time. 
+Our plan going into week four was to direct most of our energy towards the time trials and grand prix race. We already had functional code for the first technical challenge, and, as previously mentioned, it was not necessary to spend time on the second technical challenge as code from the grand prix could be reused for it. The grand prix was what we had to do the most work on and where we dedicated most of our time. 
 
 
 
