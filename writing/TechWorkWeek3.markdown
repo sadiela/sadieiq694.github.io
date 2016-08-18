@@ -95,15 +95,15 @@ The lack of time put into perfecting color ranges was apparent in the images tha
 
 ![sucess](https://cloud.githubusercontent.com/assets/18174572/17710382/00521852-63bb-11e6-83a6-6a10a6911656.png)
 
-Figure BLANK: Successful detection of blob (10 pts)
+Figure 2: Successful detection of blob (10 pts)
 
 ![Failure](https://cloud.githubusercontent.com/assets/18174572/17710383/00560a02-63bb-11e6-9a59-b3463de206e9.png)
 
-Figure BLANK + 1: Detection of background as a blob
+Figure 3: Detection of background as a blob
 
 ![Different Failure](https://cloud.githubusercontent.com/assets/18174572/17710379/00388d74-63bb-11e6-8739-9a6b26836600.png)
 
-Figure BLANK + 2: Correct detection of green blob and incorrect detection of red blob
+Figure BLANK 4: Correct detection of green blob and incorrect detection of red blob
 
 From the pictures it was clear that our car could have been more successful at blob detection if we had set the speed to be slightly lower. The images were blurred, which most likely did nothing to help the image processing. The car definitely went faster than necessary as it made at least five full loops around the course in the allotted two minutes. Clearer images could have led to more accurately identified blobs.
 
