@@ -57,7 +57,7 @@ class ZedCamPub:
 		sat_green_min = .5
 		sat_green_max = 1
 
-		val_green_min = 0
+		val_green_min = .4
 		val_green_max = 1
 
 		green_bounds = np.array([hue_green_min / 2, int(sat_green_min * 255), int(val_green_min * 255)]), np.array([hue_green_max / 2, int(sat_green_max * 255), int(val_green_max * 255)])
