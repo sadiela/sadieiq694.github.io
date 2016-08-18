@@ -4,11 +4,21 @@
 
 ### Week One
 
+Final Challenge: Sixth Place 
+
 ###Week Two
+
+Final Challenge: No successful runs
 
 ###Week Three
 
+Final Challenge: 58 points, second place
+
 ###Week Four
+
+Time trials: Third Place
+Heat Race: Second Place
+Mini Grand Prix: Fourth Place
 
 ##Findings
 
