@@ -79,7 +79,7 @@ In terms of task delegation, our group split so some of us were working on blob 
 
 There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. We struggled to interpret the documentation of several OpenCV functions and encountered multiple problems with the custom message type. On Thursday we finally succeeded in getting the node to publish the correct data.
 
-The blob detection node subscribed to the /camera/rgb/image_rect_color topic, which gave it access to the stream of images captured by the ZED camera. It published to the blob_detect and Image topics. The custom blob_info messages were sent over the blob_detect topic. The Image topic was used to publish frames from the camera to which contours and points indicating the center of blobs were added. These altered images were used to debug the vision code and tweak color ranges. 
+The blob detection node subscribed to the /camera/rgb/image_rect_color topic, which gave it access to the stream of images captured by the ZED camera. It published to the blob_info and image_echo topics. The custom blob_detect messages were sent over the blob_info topic. The Image topic was used to publish frames from the camera to which contours and points indicating the center of blobs were added. These altered images were used to debug the vision code and tweak color ranges. 
 
 **Table 1: Color Ranges for Green and Red Blobs (Saturation and Value are Fractional)**
 
@@ -92,7 +92,7 @@ The vision node worked by creating two lists of contours: one for red blobs and 
 
 ###Motion Node
 
-The blob detection node took a lot longer to program than our group anticipated, so we did not get to spend as much time as we wanted on the motion code. To summarize, the node subscribed to the blob_detect and /scan topics. It used the x term of the location tuple and compared it to the x coordinate at center of the camera's view to find the steering error. The error was input into a PID function to determine the steering angle. The size of the blob was used to tell the node when to switch between visual servoing and wall following. If the size of the blob made up more than 10% of the camera view, the node would make the change. 
+The blob detection node took a lot longer to program than our group anticipated, so we did not get to spend as much time as we wanted on the motion code. To summarize, the node subscribed to the blob_info and /scan topics. It used the x term of the location tuple and compared it to the x coordinate at center of the camera's view to find the steering error. The error was input into a PID function to determine the steering angle. The size of the blob was used to tell the node when to switch between visual servoing and wall following. If the size of the blob made up more than 10% of the camera view, the node would make the change. 
 
 The wall following algorithm we implemented was similar to the one from the previous week; it took a range of points and used the minimum distance of these points as the distance from the wall. 
 
