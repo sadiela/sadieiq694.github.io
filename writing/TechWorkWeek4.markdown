@@ -25,9 +25,23 @@ WHAT ACTUALLY HAPPENED
 
 ##Results
 
+### Technical Challenge 1: Exploring Space
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TqN69NZ3m8w" frameborder="0" allowfullscreen></iframe>
+
+Figure 1: Robot Exploring Space and Avoiding Obstacles
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TqN69NZ3m8w" frameborder="0" allowfullscreen></iframe>
+
+### Technical Challenge 2: Making the Correct Turn
+
+### Time Trials
+
+### Heat Race and Grand Prix
+
 Despite multiple hardware issues that took up huge amounts of our time, our group managed to successfully complete all three time trials.
+
+
 - third in time trials
 - second in heat
 - fourth in final grand prix
-
-##Sources
