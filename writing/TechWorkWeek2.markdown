@@ -108,7 +108,7 @@ We only got to test the entire system a couple of times before the weekly challe
 
 ![WeeklyChallenge](https://cloud.githubusercontent.com/assets/18174572/17713920/5cdf9df0-63cb-11e6-810f-9680f78509df.png)
 
-Figure 6: Diagram of Week 2 Challenge
+Figure 6: Diagram of Week 2 Challenge (7)
 
 ##Results
 
@@ -133,3 +133,5 @@ Cited
 (5) http://docs.opencv.org/trunk/d4/d73/tutorial_py_contours_begin.html#gsc.tab=0
 
 (6) http://www.clear-mind-meditation-techniques.com/image-files/simple-colored-shapes.jpg
+
+(7) Image retrieved from Friday Lab Challenge sheet: https://docs.google.com/document/d/1tuRuW7xBLRTJqUfpCnNMH-ktWLft_vGdvnr7RT1cgk8/edit
