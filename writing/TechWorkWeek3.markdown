@@ -14,25 +14,25 @@ Although students did not implement localization, mapping, or the SLAM algorithm
 
 ###Localization
 
-Localization is the process of determining the pose of a robot with respect to an environment it is given a representation of (1). The representation is defined with respect to some external reference frame, such as the robot's starting position or nearby walls, corners, or markings.
+Localization is the process of determining the pose of a robot with respect to an environment it is given a representation of (1). The representation is defined with respect to some external reference frame, such as the robot's starting position or nearby walls, corners, or markings. (15)
 
-Dead reckoning localization uses odometry to estimate the robot's pose with respect to the initial coordinate frame. Dead reckoning has multiple error sources, such as wheel slip, gear backlash, noise from encoders, and sensor or processor quantization errors that accumulate over time to  make the pose less than accurate. 
+Dead reckoning localization uses odometry to estimate the robot's pose with respect to the initial coordinate frame. Dead reckoning has multiple error sources, such as wheel slip, gear backlash, noise from encoders, and sensor or processor quantization errors that accumulate over time to  make the pose less than accurate. (15)
 
 ![Dead Reckoning Errors](https://cloud.githubusercontent.com/assets/18174572/17782992/fc071c9a-6543-11e6-9f89-d846b68e9272.png)
 
-Figure 1: Accumulated error from dead-reckoning localization (1)
+Figure 1: Accumulated error from dead-reckoning localization (15)
 
-Landmarks with known reference frame pose embedded in the environment can help cut down on these errors. Landmarks can be natural, such as a wall corner, or artificial, like a surveyor's mark. They also vary in which sensor is able to detect it. Triangulation can be used to estimate pose with respect to two landmarks.
+Landmarks with known reference frame pose embedded in the environment can help cut down on these errors. Landmarks can be natural, such as a wall corner, or artificial, like a surveyor's mark. They also vary in which sensor is able to detect it. Triangulation can be used to estimate pose with respect to two landmarks. (15)
 
 ###SLAM Algorithm
 
-The Simultaneous Localization and Mapping Algorithm (SLAM) algorithm allows a robot with no external coordinate reference to use a series of proprioceptive and exteroceptive (internal and external) measurements taken as it moves through an unknown environment to create a map of said environment (1). The robot is also able to localize itself with respect to the map it generates.
+The Simultaneous Localization and Mapping Algorithm (SLAM) algorithm allows a robot with no external coordinate reference to use a series of proprioceptive and exteroceptive (internal and external) measurements taken as it moves through an unknown environment to create a map of said environment (15). The robot is also able to localize itself with respect to the map it generates.
 
-SLAM is also most effective when landmarks are used. Localization based on environment features minimizes robot pose uncertainty and thus the uncertainty of the map (1). Laser scans or camera data could both be used to create the map.
+SLAM is also most effective when landmarks are used. Localization based on environment features minimizes robot pose uncertainty and thus the uncertainty of the map (15). Laser scans or camera data could both be used to create the map.
 
 ###Potential Fields
 
-The potential field method is a form of path planning algorithm. The key idea of potential field algorithms is that the robot travels through a space such that it is attracted to a goal region and repelled from any obstacles. This can be implemented using localization or as a reactive algorithm. The latter was most relevant to the student's goals for the week. 
+The potential field method is a form of path planning algorithm. The key idea of potential field algorithms is that the robot travels through a space such that it is attracted to a goal region and repelled from any obstacles (16). This can be implemented using localization or as a reactive algorithm. The latter was most relevant to the student's goals for the week. 
 
 Vectors are an excellent way to execute a potential field algorithm. The LiDAR scanner, creates 1081 data points containing the distance between the car and the nearest obstacle in that direction. Each of these points can be interpreted as vectors directed at the car; the shorter the distance between the car and the obstacle, the stronger the force of the vector. This effectively repels the car away from any obstacles. However, in reactive planning, there is no 'goal region' as the robot has no idea of its pose with respect to the environment, so the robot is not being attracted to anything, only repelled. To fix this, a large driving charge can be placed directly behind the robot to move it forward. This method works well when the robot is just trying to explore and avoid obstacles as was the goal in week three's challenge. 
 
@@ -95,20 +95,14 @@ The lack of time put into perfecting color ranges was apparent in the images tha
 
 ![sucess](https://cloud.githubusercontent.com/assets/18174572/17710382/00521852-63bb-11e6-83a6-6a10a6911656.png)
 
-Figure 2: Successful detection of blob (10 pts)
+Figure 2: Successful detection of blob (10 pts), original image
 
 ![Failure](https://cloud.githubusercontent.com/assets/18174572/17710383/00560a02-63bb-11e6-9a59-b3463de206e9.png)
 
-Figure 3: Detection of background as a blob
+Figure 3: Detection of background as a blob, original image
 
 ![Different Failure](https://cloud.githubusercontent.com/assets/18174572/17710379/00388d74-63bb-11e6-8739-9a6b26836600.png)
 
-Figure BLANK 4: Correct detection of green blob and incorrect detection of red blob
+Figure BLANK 4: Correct detection of green blob and incorrect detection of red blob, original image
 
 From the pictures it was clear that our car could have been more successful at blob detection if we had set the speed to be slightly lower. The images were blurred, which most likely did nothing to help the image processing. The car definitely went faster than necessary as it made at least five full loops around the course in the allotted two minutes. Clearer images could have led to more accurately identified blobs.
-
-##Sources
-
-(1) Karaman, Sertac. https://www.dropbox.com/sh/trzu47z3f27ha27/AAACnQvdlMnihpcdFI_8Zdcna/Lecture%206.pdf?dl=0
-
-(2) Karaman, Sertac. https://www.dropbox.com/sh/trzu47z3f27ha27/AACxX5rGpFfqSECANnGJ6Gqka/Lecture%205.pdf?dl=0
