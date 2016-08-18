@@ -22,7 +22,10 @@ My team decided to use two nodes for the weekly challenge. One would control the
 
 | Color | Hue Min | Hue Max | Saturation Min | Saturation Max | Value Min | Value Max |
 |-------|:-------:|:--------:|:--------------:|:-------------:|:--------:|:----------:|
-|Red    |         |          |                |            |            |            |
+|Red    |    0     |    15      |                |      1      |            |     1       |
+|Green    |         |          |                |     1       |            |     1       |
+|Yellow   |         |          |                |     1       |            |    1        |
+|Blue    |         |          |                |      1      |            |     1       |
 
 ##Results
 
