@@ -63,7 +63,7 @@ Custom messages were another important tool introduced to students. Sometimes it
       std_msgs/Float64 size
       geometry_msgs/Point location
 
-This is the message type my group used in the week two challenge to communicate information about the blob. The custom message allowed the color, size, and location of the blob to be sent as a group instead of individually. 
+This is the message type my group used in the week two challenge to communicate information about the blob. The custom message allowed the color, size, and location of the blob to be sent all together instead of individually. 
 
 ###Challenge Approach
 
@@ -75,7 +75,9 @@ In terms of task delegation, our group split so some of us were working on blob 
   
 ##Process
 
-There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. We struggled to interpret the documentation of several OpenCV functions and encountered multiple problems with the custom message type. On Thursday we finally succeeded 
+###Blob Detection Node
+
+There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. We struggled to interpret the documentation of several OpenCV functions and encountered multiple problems with the custom message type. On Thursday we finally succeeded in getting the node to publish the correct data.
 
 The blob detection node subscribed to the /camera/rgb/image_rect_color topic, which gave it access to the stream of images captured by the ZED camera. It published to the blob_detect and Image topics. The custom blob_info messages were sent over the blob_detect topic. The Image topic was used to publish frames from the camera to which contours and points indicating the center of blobs were added. These altered images were used to debug the vision code and tweak color ranges. 
 
@@ -88,11 +90,21 @@ The blob detection node subscribed to the /camera/rgb/image_rect_color topic, wh
 
 The vision node worked by creating two lists of contours: one for red blobs and one for green blobs. The 'official contour' was set to green by default. If the list of green contours was empty, the official contour would be set to red. The center and size of the blob was then determined using moments and the fields of the custom message type were filled out. Finally, the custom message type and the modified camera image were published.
 
-The blob detection node took a lot longer to program than our group anticipated, so we did not get to spend as much time as we wanted on the motion code.
+###Motion Node
+
+The blob detection node took a lot longer to program than our group anticipated, so we did not get to spend as much time as we wanted on the motion code. To summarize, the node subscribed to the blob_detect and /scan topics. It used the x term of the location tuple and compared it to the x coordinate at center of the camera's view to find the steering error. The error was input into a PID function to determine the steering angle. The size of the blob was used to tell the node when to switch between visual servoing and wall following. If the size of the blob made up more than 10% of the camera view, the node would make the change. 
+
+The wall following algorithm we implemented was similar to the one from the previous week; it took a range of points and used the minimum distance of these points as the distance from the wall. 
+
+It was necessary to add an additional motion command between visual servoing and wall follow. When the car reached the point that it was close enough to the blob to start wall following, it was perpendicular to the wall. This means that when the car attempted to wall follow in either direction, the LiDAR would detect the smallest distance to be extremely large, so the car would turn hard in that direction and drive in a circle indefinitely. To combat this, we added a manual steering command that would tell the car to steer full right for green and full right for red for a period of .75 seconds. That way, when the car finally switched to wall following, there would actually be a wall for it to detect using the LiDAR.
+
+###Testing
 
 We did not get to test until the final day. Before testing the robot on the floor, we put it on a box so we could see what the wheels were doing without it actually moving. We then held a green blob in front of the camera and moved it around to see if the car was successfully steering towards the blob. Once we were sure this worked, we were ready to test it on the floor. 
 
 To make sure it was making it into the visual servo box, we added temporary code to made the robot stop right before the transition from visual servoing to wall following. This allowed us to tweak the desired area for the blob until the car stopped right inside the box. 
+
+We only got to test the entire system a couple of times before the weekly challenge. There were problems with sign mix ups; it was turning left on green or not following the correct wall. We thought that we had fixed this as we did have one successful test run with a green blob, but would have liked to test it many more times to confirm that they were correct. 
 
 ![WeeklyChallenge](https://cloud.githubusercontent.com/assets/18174572/17713920/5cdf9df0-63cb-11e6-810f-9680f78509df.png)
 
