@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Sadieiq694.GitHub.io by sadieiq694</title>
+    <title>Technical Paper for MIT Beaver Works Summer Institute, Sadie Allen by sadieiq694</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,8 +11,8 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Sadieiq694.GitHub.io</h1>
-      <h2 class="project-tagline">Technical Paper for MIT Beaver Works Summer Institute, Sadie Allen</h2>
+      <h1 class="project-name">Technical Paper for MIT Beaver Works Summer Institute, Sadie Allen</h1>
+      <h2 class="project-tagline">sadieiq694.github.io</h2>
     </section>
 
     <section class="main-content">
@@ -199,27 +199,347 @@ Figure 1: Labeled illustration of the RACECAR used in this course (1); note that
   to get started, so this change was reflected in the final results. Our best time was 9.58 seconds,
   almost a full second slower than in the time trials. We placed sixth overall in the final round.</p>
 
+<hr>
+
+<h1>
+<a id="week-two-technical-work" class="anchor" href="#week-two-technical-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Week Two: Technical Work</h1>
+
 <h2>
-<a id="sources" class="anchor" href="#sources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>Sources</strong>
-</h2>
+<a id="goals-1" class="anchor" href="#goals-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Goals</h2>
 
-<p>Cited</p>
+<p>After week one, students felt more comfortable with the cars and basic motion commands. So, for week two, groups built upon these skills by combining them with basic computer vision.</p>
 
-<p>(1) Guldner, Owen. (2016) Introduction to the RACECAR Platform [Powerpoint slides]. Retrieved from <a href="https://drive.google.com/file/d/0B6jv7Ea8ZHnNZmZTbUdLWktyLW8/view">https://drive.google.com/file/d/0B6jv7Ea8ZHnNZmZTbUdLWktyLW8/view</a></p>
+<p>Like the previous week, there were two main goals during the week. The first was to  learn about image processing and become comfortable using OpenCV, an open source computer vision software library (7). The final challenge goal incorporated things learned during both weeks. The cars had to be able to detect a brightly colored piece of construction paper, or, 'blob', and drive toward it using visual servoing. This blob was either red or green, and once the robot got a certain distance away from it (approximately one meter), it had to make a decision based upon this color. If the blob was green, the car had to turn right and follow the left wall to a finish line. If it was red, the car had to turn left and follow the right wall to a different finish line. Again, teams were to complete these tasks as quickly as possible.</p>
 
-<p>(2) "Jetson TX1 Embedded Systems Module from NVIDIA Jetson." <em>Nvidia.</em> N.p., n.d. Web. 15 Aug. 2016. <a href="http://www.nvidia.com/object/jetson-tx1-module.html">http://www.nvidia.com/object/jetson-tx1-module.html</a>.</p>
+<h2>
+<a id="approach-1" class="anchor" href="#approach-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach</h2>
 
-<p>(3) PID Compensation Animated. Digital image. Commons.wikimedia.org. N.p., 28 May 2015. Web. 13 Aug. 2016. <a href="https://commons.wikimedia.org/wiki/File:PID_Compensation_Animated.gif">https://commons.wikimedia.org/wiki/File:PID_Compensation_Animated.gif</a>.</p>
+<p>Again, some background knowledge is necessary before my group's approach can be described.</p>
 
-<p>(4) Thomas, Dirk. "Introduction." <em>ROS.org</em>. 22 May 2014. Web. 12 August 2016. <a href="http://wiki.ros.org/ROS/Introduction">http://wiki.ros.org/ROS/Introduction</a>.</p>
+<h3>
+<a id="computer-representation-of-images" class="anchor" href="#computer-representation-of-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Computer Representation of Images</h3>
 
-<p>(5) Boulet, Michael T.. (2016) Introduction to ROS [Powerpoint slides]. Retrieved from <a href="https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqjhdwd8mg0c3/B__Introduction_to_ROS_Lecture.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&amp;Expires=1471210259&amp;Signature=bMe%2FqyItVgZueiPzbiPhWCLqLYQ%3D">https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqjhdwd8mg0c3/B__Introduction_to_ROS_Lecture.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&amp;Expires=1471210259&amp;Signature=bMe%2FqyItVgZueiPzbiPhWCLqLYQ%3D</a></p>
+<p>A computer deals with color images as 2D pixel arrays where each pixel encodes a color (8). There are several ways in which computers can represent colors, but in the Beaver Works course students mostly worked with RGB and HSV formats. </p>
 
-<p>(6) Edelberg, Kyle. "Control Systems." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 13 July 2016. Lecture.</p>
+<p>The human eye perceives color using specialized cells called cones. There are three different types of cones in our eyes that all respond most strongly to different wavelengths of light; red, green, or blue (9). RGB representation is based off the human visual system. Each pixel in the 2D array that represents an image encodes a color with the triplet (R, G, B). Because color pixels are typically encoded in 24 bits, or, 8 bits per color, the R, G, and B components take values between 0 and 255 (8). (0, 0, 0) encodes black, (255, 255, 255) encodes white, and any triplet in which all three values are the same represents gray. (255, 0, 0) would be a 'perfect' red.</p>
 
-<p>Referenced</p>
+<p>An alternative to RGB is the HSV color model. This system also uses triplets to represent colors, but the three values represent hue, saturation, and value. Hue is an angle out of 180 degrees. 0 degrees is red, 60 degrees is green, and 120 degrees is blue. Saturation is out of 255 and represents the intensity of the color. Value is also on a scale of 0 to 255 and is a measure of the brightness of a color (8).</p>
 
-<p>(7) Edelberg, Kyle. "Control Systems: Application." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 14 July 2016. Lecture.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17703787/f45c870e-63a0-11e6-86b2-d12b2cd06902.png" alt="HSV Chart"></p>
+
+<p>Figure 1: Diagram showing how colors change in accordance with HSV values (10)</p>
+
+<p>The HSV model works better for blob detection because it is much more robust under illumination changes.</p>
+
+<h3>
+<a id="intro-to-opencv-tools" class="anchor" href="#intro-to-opencv-tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Intro To OpenCV Tools</h3>
+
+<p>Students used OpenCV to process the images received from the ZED camera. Specific tools in the library that were particularly useful for week two's challenge were:</p>
+
+<ul>
+<li>
+<strong>Creating A Mask</strong>: Using cv2.inRange, one can select upper and lower bounds for color values and create a "mask" that highlights a specific color. This method can be used to initially identify blobs of specific colors. (7)</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17709879/deab533c-63b8-11e6-95a7-1b490beab197.png" alt="mask"></p>
+
+<p>Figure 2: Side by side of original image and binary mask for red range (11)</p>
+
+<ul>
+<li>
+<strong>Creating a Contour</strong>: Contours are essentially curves that join all continuous points along a boundary having the same color. They work best on binary images, which is why a mask is used to isolate the specific colors. By using the function cv2.findContours, one can identify contours using the binary image. The contours can then be applied to the original image using cv2.drawContours (7).</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17710445/4aed708c-63bb-11e6-83fa-fa6570613979.png" alt="contour"></p>
+
+<p>Figure 3: Image with contours applied (11)</p>
+
+<ul>
+<li>
+<strong>Using Moments</strong>: Moments (cv2.moments) can be used to find the center of contours, which is useful to know when visual servoing (7). One can compare the x coordinate of the center of a contour (that outlines the desired blob) to the x coordinate of the center of the camera's frame and make steering decisions based on the difference. </li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17711449/ac908e7e-63bf-11e6-8275-5bdbf1ecbd89.png" alt="center"></p>
+
+<p>Figure 4: Image with center identified (11)</p>
+
+<ul>
+<li>
+<strong>Creating a Bounding Rectangle</strong>: cv2.boundingrect, as the name suggests, draws a rectangle around a contour. It is also one of several functions that can be used to determine the rough area of a blob, as it computes both height and width (7). However, this approach to finding the area is only accurate when the blob is rectangular in shape.</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17712492/28f3e264-63c4-11e6-9bed-37eb7119b0af.png" alt="bounding rectangle"></p>
+
+<p>Figure 5: Side by side view of red contour and bounding rect based off of contour (12)</p>
+
+<p>These tools were primarily what groups used to work with blobs for week two's challenge.</p>
+
+<h3>
+<a id="custom-messages" class="anchor" href="#custom-messages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom Messages</h3>
+
+<p>Custom messages were another important tool introduced to students. Sometimes it is necessary to communicate multiple pieces of information between nodes of varying different types (13). This is made possible by custom message types. An example is as follows:</p>
+
+<pre><code>  Header header
+  std_msgs/String color
+  std_msgs/Float64 size
+  geometry_msgs/Point location
+</code></pre>
+
+<p>This is the message type my group used in the week two challenge to communicate information about the blob. The custom message allowed the color, size, and location of the blob to be sent all together instead of individually. </p>
+
+<h3>
+<a id="challenge-approach-1" class="anchor" href="#challenge-approach-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Challenge Approach</h3>
+
+<p>We decided to handle the challenge tasks with two nodes. One would handle vision and blob detection and one would handle motion commands. By writing fewer nodes, we hoped to save time that we could spend working with image processing, which proved to be difficult in the preliminary labs. </p>
+
+<p>The blob detection node would determine the size, location, and color of the blob and pass it to the motion control node, which would use that information to make all driving decisions.</p>
+
+<p>In terms of task delegation, our group split so some of us were working on blob detection and others worked on motion commands. Again, time played a big role in this decision. It would have been preferable for the entire group to work through everything together to ensure unanimous comprehension of the code, but because we went with a "divide and conquer" approach. </p>
+
+<h2>
+<a id="process-1" class="anchor" href="#process-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Process</h2>
+
+<h3>
+<a id="blob-detection-node" class="anchor" href="#blob-detection-node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Blob Detection Node</h3>
+
+<p>There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. We struggled to interpret the documentation of several OpenCV functions and encountered multiple problems with the custom message type. On Thursday we finally succeeded in getting the node to publish the correct data.</p>
+
+<p>The blob detection node subscribed to the /camera/rgb/image_rect_color topic, which gave it access to the stream of images captured by the ZED camera. It published to the blob_info and image_echo topics. The custom blob_detect messages were sent over the blob_info topic. The Image topic was used to publish frames from the camera to which contours and points indicating the center of blobs were added. These altered images were used to debug the vision code and tweak color ranges. </p>
+
+<p><strong>Table 1: Color Ranges for Green and Red Blobs (Saturation and Value are Fractional)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th align="center">Hue Min</th>
+<th align="center">Hue Max</th>
+<th align="center">Saturation Min</th>
+<th align="center">Saturation Max</th>
+<th align="center">Value Min</th>
+<th align="center">Value Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red</td>
+<td align="center">0</td>
+<td align="center">15</td>
+<td align="center">.8</td>
+<td align="center">1</td>
+<td align="center">.7</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>Green</td>
+<td align="center">50</td>
+<td align="center">77</td>
+<td align="center">.4</td>
+<td align="center">1</td>
+<td align="center">.15</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+
+<p>The vision node worked by creating two lists of contours: one for red blobs and one for green blobs. The 'official contour' was set to green by default. If the list of green contours was empty, the official contour would be set to red. The center and size of the blob was then determined using moments and the fields of the custom message type were filled out. Finally, the custom message type and the modified camera image were published.</p>
+
+<h3>
+<a id="motion-node" class="anchor" href="#motion-node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Motion Node</h3>
+
+<p>The blob detection node took a lot longer to program than our group anticipated, so we did not get to spend as much time as we wanted on the motion code. To summarize, the node subscribed to the blob_info and /scan topics. It used the x term of the location tuple and compared it to the x coordinate at center of the camera's view to find the steering error. The error was input into a PID function to determine the steering angle. The size of the blob was used to tell the node when to switch between visual servoing and wall following. If the size of the blob made up more than 10% of the camera view, the node would make the change. </p>
+
+<p>The wall following algorithm we implemented was similar to the one from the previous week; it took a range of points and used the minimum distance of these points as the distance from the wall. </p>
+
+<p>It was necessary to add an additional motion command between visual servoing and wall follow. When the car reached the point that it was close enough to the blob to start wall following, it was perpendicular to the wall. This means that when the car attempted to wall follow in either direction, the LiDAR would detect the smallest distance to be extremely large, so the car would turn hard in that direction and drive in a circle indefinitely. To combat this, we added a manual steering command that would tell the car to steer full right for green and full right for red for a period of .75 seconds. That way, when the car finally switched to wall following, there would actually be a wall for it to detect using the LiDAR.</p>
+
+<h3>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>We did not get to test until the final day. Before testing the robot on the floor, we put it on a box so we could see what the wheels were doing without it actually moving. We then held a green blob in front of the camera and moved it around to see if the car was successfully steering towards the blob. Once we were sure this worked, we were ready to test it on the floor. </p>
+
+<p>To make sure it was making it into the visual servo box, we added temporary code to made the robot stop right before the transition from visual servoing to wall following. This allowed us to tweak the desired area for the blob until the car stopped right inside the box. </p>
+
+<p>We only got to test the entire system a couple of times before the weekly challenge. There were problems with sign mix ups; it was turning left on green or not following the correct wall. We thought that we had fixed this as we did have one successful test run with a green blob, but would have liked to test it many more times to confirm that they were correct. </p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17713920/5cdf9df0-63cb-11e6-810f-9680f78509df.png" alt="WeeklyChallenge"></p>
+
+<p>Figure 6: Diagram of Week 2 Challenge (14)</p>
+
+<h2>
+<a id="results-1" class="anchor" href="#results-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
+
+<p>For week two's challenge, each car had three opportunities to complete the tasks. For each of these three tries, the blob color would be randomly chosen as would the starting orientation of the car. The blob would be either red or green and the car would either start pointing directly at the blob or be slightly rotated to the left or right. The time (if there was one) would be recorded for each run and the single best time would be used to rank the cars at the end.</p>
+
+<p>For our first run, our car was assigned the green blob and was rotated slightly to the right. For the second run, we again were given the green blob but our car was not rotated. In the final run we had to detect a red blob and we started rotated to the right again. We were one of the seven teams that did not complete any runs successfully. This was unsurprising considering we only had one successful test run, but disappointing nonetheless.</p>
+
+<p>During the first and third runs, our car made it into the visual servoing box and turned in the correct direction, but just continued to turn in a circle and did not make it to the finish line. The car's most successful attempt was its second (green no rotation), where it made it into the box, made the correct turn (right), wall followed the left wall for a little while, but about three meters away from the finish line suddenly turned right and collided with the wall on the other side. There are many possible reasons for the car's malfunctions. It could have been something as simple as a sign error in the left and right steer values or something that would take more time to debug, like a faulty turn command. Given more time our team may have made some very different choices, such as splitting the visual servoing and wall following into two separate nodes instead of combining them into one. This week was difficult, but groups were able to accomplish the first goal, gaining experience with image processing, which would help them in the weeks to follow.</p>
+
+<hr>
+
+<h1>
+<a id="week-three-technical-work" class="anchor" href="#week-three-technical-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Week Three: Technical Work</h1>
+
+<h2>
+<a id="goals-2" class="anchor" href="#goals-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Goals</h2>
+
+<p>Week three had a slightly different format than weeks one and two. Unlike in the previous two weeks, most of the lectures were not relevant to the lab work. Because of this, the academic and challenge goals of the week are noticeably disjoint.</p>
+
+<p>The lectures during week three focused on localization and mapping. Students also learned about several path planning algorithms. The goal was to understand common algorithms that are used to let a robot know where it is in its environment and can be used to develop routes to specific goals.</p>
+
+<p>The weekly challenge did not required groups to implement any localization or mapping functionality. The cars had to drive around for two minutes in an enclosed pen, avoid hitting any obstacles, and identify as many different colored blobs as possible.</p>
+
+<h2>
+<a id="approach-2" class="anchor" href="#approach-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach</h2>
+
+<p>Although students did not implement localization, mapping, or the SLAM algorithm during the program, they were an important part of the student's conceptual learning for the week. Potential fields were implemented by almost all teams and were relevant to the localization and mapping lectures of the week. </p>
+
+<h3>
+<a id="localization" class="anchor" href="#localization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Localization</h3>
+
+<p>Localization is the process of determining the pose of a robot with respect to an environment it is given a representation of (1). The representation is defined with respect to some external reference frame, such as the robot's starting position or nearby walls, corners, or markings. (15)</p>
+
+<p>Dead reckoning localization uses odometry to estimate the robot's pose with respect to the initial coordinate frame. Dead reckoning has multiple error sources, such as wheel slip, gear backlash, noise from encoders, and sensor or processor quantization errors that accumulate over time to  make the pose less than accurate. (15)</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17782992/fc071c9a-6543-11e6-9f89-d846b68e9272.png" alt="Dead Reckoning Errors"></p>
+
+<p>Figure 1: Accumulated error from dead-reckoning localization (15)</p>
+
+<p>Landmarks with known reference frame pose embedded in the environment can help cut down on these errors. Landmarks can be natural, such as a wall corner, or artificial, like a surveyor's mark. They also vary in which sensor is able to detect it. Triangulation can be used to estimate pose with respect to two landmarks. (15)</p>
+
+<h3>
+<a id="slam-algorithm" class="anchor" href="#slam-algorithm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SLAM Algorithm</h3>
+
+<p>The Simultaneous Localization and Mapping Algorithm (SLAM) algorithm allows a robot with no external coordinate reference to use a series of proprioceptive and exteroceptive (internal and external) measurements taken as it moves through an unknown environment to create a map of said environment (15). The robot is also able to localize itself with respect to the map it generates.</p>
+
+<p>SLAM is also most effective when landmarks are used. Localization based on environment features minimizes robot pose uncertainty and thus the uncertainty of the map (15). Laser scans or camera data could both be used to create the map.</p>
+
+<h3>
+<a id="potential-fields" class="anchor" href="#potential-fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Potential Fields</h3>
+
+<p>The potential field method is a form of path planning algorithm. The key idea of potential field algorithms is that the robot travels through a space such that it is attracted to a goal region and repelled from any obstacles (16). This can be implemented using localization or as a reactive algorithm. The latter was most relevant to the student's goals for the week. </p>
+
+<p>Vectors are an excellent way to execute a potential field algorithm. The LiDAR scanner, creates 1081 data points containing the distance between the car and the nearest obstacle in that direction. Each of these points can be interpreted as vectors directed at the car; the shorter the distance between the car and the obstacle, the stronger the force of the vector. This effectively repels the car away from any obstacles. However, in reactive planning, there is no 'goal region' as the robot has no idea of its pose with respect to the environment, so the robot is not being attracted to anything, only repelled. To fix this, a large driving charge can be placed directly behind the robot to move it forward. This method works well when the robot is just trying to explore and avoid obstacles as was the goal in week three's challenge. </p>
+
+<p>The following formulas can be used to find the repulsive force of a single point: </p>
+
+<pre><code>                        |Ê| = Alaser / r^2                                              (eq. 1)
+</code></pre>
+
+<p>Where Alaser is some constant charge and r is the distance of the car to the obstacle for that particular point. By using this equation for every point and summing the results, one can obtain the total repulsive force. </p>
+
+<p>A major advantage of the potential field algorithm is that when a car gets extremely close to an obstacle, the repelling charge from the obstacle overpowers the driving force which causes the car to back up. This prevents it from getting stuck.</p>
+
+<h3>
+<a id="challenge-approach-2" class="anchor" href="#challenge-approach-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Challenge Approach</h3>
+
+<p>My team decided to use two nodes for the weekly challenge. One would control the cars motion and implement a potential field algorithm. The other would detect and record images of blobs that the car's camera captured. These nodes were completely independent of each other and did not communicate at all. We decided to have two independent nodes because it was not necessary for them to communicate. This week, we focused on perfecting the simplest algorithms that could accomplish our goals. </p>
+
+<p>We decide to write the motion control first, followed by the vision node. Since we had spent all of last week learning about image processing, we felt more confident in that part of the code and wanted to get the unfamiliar potential field done first. Like the first week, for the most part all members of the group worked through the process together with very little task delegation. Codeshare.io allowed us to all look at the code together without crowding around one computer and was a very useful tool during the week. </p>
+
+<p>One decision we made before writing the motion node was to add a functionality to help the car get "unstuck" if it ever stopped moving completely. Although rare, sometimes the driving force and the repelling forces equalize, causing the car to stall. To fix this, we chose to add code that told the car to back up if it had not moved for more than two seconds.</p>
+
+<p>We also had to decide how to approach saving images that the vision node captured. The main concern was capturing many images detecting the same blob. The camera publishes multiple images per second, and the same blob would probably be present in several images in a row. It is unnecessary to detect any blob more than one time, so our group had to decide how to prevent repeat recognition from happening. This could be done using odometry or time. We decided to use distance. After the car saved a picture, it would have to travel one meter before capturing another. </p>
+
+<h2>
+<a id="process-2" class="anchor" href="#process-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Process</h2>
+
+<h3>
+<a id="explorer-node" class="anchor" href="#explorer-node" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Explorer Node</h3>
+
+<p>The potential field algorithm was surprisingly simple to implement. The first draft of the code took less than half an hour to write. Other than a few syntax errors, the code was functional right off the bat and just needed tweaking. </p>
+
+<p>The node subscribed to the 'scan' topic to receive LiDAR data and published steering commands to the 'vesc/ackermann_cmd_mux/input/navigation' topic. For our propelling charge we settled on a value of 4, and the Alaser value was 0.005. These took a lot of testing to figure out. If the propelling charge was not large enough, the car would not move forward, but if it were too large in comparison to the Alaser value, then it would collide with obstacles because their repelling charges would be completely overwhelmed. </p>
+
+<h3>
+<a id="blob-search" class="anchor" href="#blob-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Blob Search</h3>
+
+<p>The blob detection node would look for contours of all four colors and determine the size of the largest of each color. If this size was larger than a predetermined threshold height (100 pixels), then this contour would 'count.' It would be outlined and labeled and a picture of it would be saved. Originally we planned to only detect the largest blob, but by checking blobs of each color against a threshold the car would be able to detect more than one blob at once. </p>
+
+<p>The node subscribed to the '/camera/rgb/image_rect_color' topic to recieve images and the '/vesc/odom' topic to receive odometry information. It published to the '/image_echo' topic and the '/exploring_challenge' topic, which would publish a string that said what color blobs it detected. Both of thse were used for debugging. </p>
+
+<p>In order to receive any points in the challenge, the camera image with contours and labels for blobs added had to be saved in the '/home/racecar/challenge_photos' directory. We did this using the OpenCV function cv2.imwrite and naming the image file based on the time at which it was taken.</p>
+
+<p>We had many problems perfecting color bounds for the four different blobs. On the HSV scale, a hue of 0 to 15 is supposed to indicate the color red, but the only way we could get the algorithm to correctly detect red was using a range of 100 to 125. We realized this was inverted (as a hue value around 120 is supposed to be blue, not red), and soon after discovered the problem. The original image was in BGR format, not RGB, so when we used the OpenCV function cv2.cvtColor to switch from RGB to HSV, we were not giving the function the correct starting format. By the time we fixed this however, we had just an hour before the final challenge. Because of this we were very rushed when determining HSV ranges and they were not as accurate as we wanted. </p>
+
+<p><strong>Table 1: Color Bounds for Blob Detection</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th align="center">Hue Min</th>
+<th align="center">Hue Max</th>
+<th align="center">Saturation Min</th>
+<th align="center">Saturation Max</th>
+<th align="center">Value Min</th>
+<th align="center">Value Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red</td>
+<td align="center">0</td>
+<td align="center">15</td>
+<td align="center">.85</td>
+<td align="center">1</td>
+<td align="center">.2</td>
+<td align="center">.9</td>
+</tr>
+<tr>
+<td>Green</td>
+<td align="center">30</td>
+<td align="center">75</td>
+<td align="center">.5</td>
+<td align="center">1</td>
+<td align="center">.4</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td align="center">0</td>
+<td align="center">180</td>
+<td align="center">.3</td>
+<td align="center">1</td>
+<td align="center">.745</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td align="center">100</td>
+<td align="center">125</td>
+<td align="center">.4</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">.5</td>
+</tr>
+</tbody>
+</table>
+
+<p>We tested the vision blob by only running the blob detection node and having it publish to the /image_echo topic and putting different colored blobs in front of the camera to see if it was correctly detecting them.</p>
+
+<h2>
+<a id="results-2" class="anchor" href="#results-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
+
+<p>In the final challenge, cars were given two minutes to navigate a pen in which red, green, yellow, and blue blobs were randomly dispersed. For each blob the car successfully detected and recorded in an image file, it was awarded ten points. For each collision, two points were deducted. There were also special pink blobs with different images inside of them. If the car was able to successfully identify what the image was, it would be awarded five points.</p>
+
+<p>In the final challenge, car 7, my group's car, detected six blobs (no special blobs) and had just one collision, which ended us with a total score of 58 points. My team received second place overall for this performance. </p>
+
+<p>The lack of time put into perfecting color ranges was apparent in the images that the vision node produced. Though it correctly identified six blobs, it also detected many things that were not blobs to be blobs and occasionally misidentified a blob as a different color than it actually was.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17710382/00521852-63bb-11e6-83a6-6a10a6911656.png" alt="sucess"></p>
+
+<p>Figure 2: Successful detection of blob (10 pts), original image</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17710383/00560a02-63bb-11e6-9a59-b3463de206e9.png" alt="Failure"></p>
+
+<p>Figure 3: Detection of background as a blob, original image</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/18174572/17710379/00388d74-63bb-11e6-8739-9a6b26836600.png" alt="Different Failure"></p>
+
+<p>Figure BLANK 4: Correct detection of green blob and incorrect detection of red blob, original image</p>
+
+<p>From the pictures it was clear that our car could have been more successful at blob detection if we had set the speed to be slightly lower. The images were blurred, which most likely did nothing to help the image processing. The car definitely went faster than necessary as it made at least five full loops around the course in the allotted two minutes. Clearer images could have led to more accurately identified blobs.</p>
 
 <hr>
 
