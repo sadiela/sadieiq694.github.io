@@ -14,6 +14,30 @@
 
 (6) Edelberg, Kyle. "Control Systems." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 13 July 2016. Lecture.
 
+(7) http://opencv.org/
+
+(8) Detry, Renaud. (2016) Image Processing [Powerpoint slides]. Retrieved from https://piazza-resources.s3.amazonaws.com/ikimc42bcsv68r/iqv1h3yfxfl3jp/11imageprocessingcv.pdf?AWSAccessKeyId=AKIAIEDNRLJ4AZKBW6HA&Expires=1471369483&Signature=o4VdJxFZKf5dYsmyXqz2MLrHVAE%3D
+
+(9) http://www.livescience.com/32559-why-do-we-see-in-color.html
+
+(10) https://en.wikipedia.org/wiki/HSL_and_HSV
+
+(11) http://refreshwichitafalls.com/images/challenge-foursquare.png
+
+(12) http://www.clear-mind-meditation-techniques.com/image-files/simple-colored-shapes.jpg
+
+(13) http://wiki.ros.org/
+
+(14) Image retrieved from Friday Lab Challenge sheet: https://docs.google.com/document/d/1tuRuW7xBLRTJqUfpCnNMH-ktWLft_vGdvnr7RT1cgk8/edit
+
+(15) Karaman, Sertac. https://www.dropbox.com/sh/trzu47z3f27ha27/AAACnQvdlMnihpcdFI_8Zdcna/Lecture%206.pdf?dl=0
+
+(16) Karaman, Sertac. https://www.dropbox.com/sh/trzu47z3f27ha27/AACxX5rGpFfqSECANnGJ6Gqka/Lecture%205.pdf?dl=0
+
 ###Referenced
 
-(7) Edelberg, Kyle. "Control Systems: Application." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 14 July 2016. Lecture.
+Edelberg, Kyle. "Control Systems: Application." Beaver Works Summer Institute. The Daniel Guggenheim Aeronautical Laboratory, Boston. 14 July 2016. Lecture.
+
+
+
+
