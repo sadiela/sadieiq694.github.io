@@ -86,7 +86,7 @@ class ObjectDetectorNode:
 			col_error = self.ddes - self.dhat
 			print "Color Error:",col_error
 			color_steering_angle = self.pid_color_control(col_error)
-		  	drive_command_color = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=color_steering_angle, speed=1.3))
+		  	drive_command_color = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=color_steering_angle, speed=2.0))
 		    	self.drive_pub.publish(drive_command_color)
 		    	#COLOR DRIVING END
 		elif height_ratio >= threshold or self.turnStart:
@@ -97,13 +97,13 @@ class ObjectDetectorNode:
 		            rospy.loginfo("Tracking left wall")
 		            self.is_right = True
 		            #self.ready_to_wall_detect = True
-			    turn_abr_cmd = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=1.0, speed=1.3))
+			    turn_abr_cmd = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=1.0, speed=2.0))
 			    self.drive_pub.publish(turn_abr_cmd)
 			elif self.color == "green" and self.ready_to_wall_detect:
 		            rospy.loginfo("Tracking right wall")
 		            self.is_right = False
 		            #self.ready_to_wall_detect = True
-			    turn_abr_cmd = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=-1.0, speed=1.3))			    
+			    turn_abr_cmd = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=-1.0, speed=2.0))			    
 			    self.drive_pub.publish(turn_abr_cmd)
 			else:
 	    		    print "Not Detecting Color"
@@ -137,7 +137,7 @@ class ObjectDetectorNode:
 		        # new_steering_angle = self.bang_bang_controller(error)
 		        # new_steering_angle = self.bang_bang_with_threshold(error)
 		        new_steering_angle = self.pid_controller(error_new)
-		        drive_command = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=new_steering_angle, speed=1.3))
+		        drive_command = AckermannDriveStamped(self.header, AckermannDrive(steering_angle=new_steering_angle, speed=2.0))
 		        self.drive_pub.publish(drive_command)
 		        #WALL DETECTION END
 
