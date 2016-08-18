@@ -75,7 +75,19 @@ In terms of task delegation, our group split so some of us were working on blob 
   
 ##Process
 
-There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. 
+There was a steep learning curve for image processing. My group struggled with it for several days, spending most of our time debugging and rerunning code that never seemed to work. We struggled to interpret the documentation of several OpenCV functions and encountered multiple problems with the custom message type. On Thursday we finally succeeded 
+
+The blob detection node subscribed to the /camera/rgb/image_rect_color topic, which gave it access to the stream of images captured by the ZED camera. It published to the blob_detect and Image topics. The custom blob_info messages were sent over the blob_detect topic. The Image topic was used to publish frames from the camera to which contours and points indicating the center of blobs were added. These altered images were used to debug the vision code and tweak color ranges. 
+
+**Table 1: Color Ranges for Green and Red Blobs (Saturation and Value are Fractional)**
+| Color | Hue Min | Hue Max | Saturation Min | Saturation Max | Value Min | Value Max |
+|-------|:-------:|:--------:|:--------------:|:-------------:|:--------:|:----------:|
+|Red     |   0      |     15     |       .8         |       1     |    .7        |     1       |
+|Green    |   50      |   77      |       .4         |      1      |    .15        |    1        |
+
+The vision node worked by creating two lists of contours: one for red blobs and one for green blobs. The 'official contour' was set to green by default. If the list of green contours was empty, the official contour would be set to red. The center and size of the blob was then determined using moments and the fields of the custom message type were filled out. Finally, the custom message type and the modified camera image were published.
+
+
 
 We did not get to test until the final day. Before testing the robot on the floor, we put it on a box so we could see what the wheels were doing without it actually moving. We then held a green blob in front of the camera and moved it around to see if the car was successfully steering towards the blob. Once we were sure this worked, we were ready to test it on the floor. 
 
