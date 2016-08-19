@@ -44,6 +44,8 @@ The exploring challenge was exactly the same as week three's challenge; the cars
 
 https://www.youtube.com/watch?v=TqN69NZ3m8w&feature=youtu.be
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TqN69NZ3m8w" frameborder="0" allowfullscreen></iframe>
+
 Figure 1: Robot Exploring Space and Avoiding Obstacles
 
 ### Technical Challenge 2: Making the Correct Turn
