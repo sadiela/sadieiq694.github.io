@@ -2,15 +2,15 @@
 
 ##Goals
 
-The goal of the final week was for students to bring together everything they had learned and showcase it at Walker Memorial Hall on Friday, August 5. The exhibition consisted of three main sections: two technical challenges and the mini grand prix.
+The goal of the final week was for students to bring together everything they had learned in a showcase at Walker Memorial Hall on Friday, August 5. The exhibition consisted of three main sections: two technical challenges and the mini grand prix.
 
-The first tech challenge was the same as the third week's challenge; Cars had to explore autonomously and avoid obstacles while recognizing and recording different colored blobs. 
+The first tech challenge was the same as the third week's challenge; Cars had to explore autonomously and avoid obstacles while recognizing and recording different colored blobs.
 
-The second tech challenge was somewhat similar to week two's challenge. The cars were required to detect a blob and based on its color turn either left or right. This is different from the original week two challenge because the cars were not required to use visual servoing and did not have to wall follow. The challenge was altered in this way so that code from it could be reused for the mini grand prix (see details below). 
+The second tech challenge was somewhat similar to week two's challenge. The cars were required to detect a blob and based on its color turn either left or right. This is different from the original week two challenge because the cars were not required to use visual servoing and did not have to wall follow. The challenge was altered in this way so that code from it could be reused for the mini grand prix (see details below).
 
 The first part of the mini grand prix consisted of time trials (three attempts per car) with the cars alone on the track. On one of the attempts, a shortcut would be opened, signified by the red blob above the shortcut entrance being changed to green. If a car could successfully take the shortcut, it would have a significantly faster time, but if it took it when it was not open, the car would not receive a time for that run.
 
-Aftr the time trials there were three heat races in which three cars would race each other, and a final grand prix with all nine cars on the track. For both of these events the entrance to the short cut was entirely blocked off.
+After the time trials there were three heat races in which three cars would race each other, and a final grand prix with all nine cars on the track. For both of these events the entrance to the short cut was entirely blocked off.
 
 ##Approach
 
@@ -28,7 +28,7 @@ Our carefully planned approach to each component of the final challenge was not 
 
 In addition to poor decision making, we had several problems with our car's hardware. The ZED camera malfunctioned on multiple occasions and cost us a lot of time. In addition, every time the car ran any form of vision code, the programs would run extremely slowly and sometimes shut down. We had to connect a computer to it with an ethernet cord whenever we needed to test the car, which was difficult.
 
-Eventually because of all the issues surrounding blob detection and the time restraints we were under, our team reevaluated and made a new, much simpler plan. We decided to scratch all code concerning blob detection and use the same code for the time trials and the grand prix. Instead of 'greatest open space,' a potential field algorithm would be implemented. Even though this was not our first choice, we had a very good potential field algorithm from the previous week that just needed to be slightly adjusted for the grand prix challenge. 
+Eventually because of all the issues surrounding blob detection and the time restraints we were under, our team reevaluated and made a new, much simpler plan. We decided to scratch all code concerning blob detection and use the same code for the time trials and the grand prix. Instead of 'greatest open space,' a potential field algorithm would be implemented. Even though this was not our first choice, we had a very good potential field algorithm from the previous week that just needed to be slightly adjusted for the grand prix challenge.
 
 The major adjustment we made to the potential field algorithm was add an artificial charge pushing it slightly to the right. This made sure that the car would turn right every time it got to the  fork in the racetrack. In addition we vamped up the propelling charge from three to five and the Alaser from .005 to .01. These were the only changes we made to the algorithm.
 
@@ -40,7 +40,7 @@ During the first technical challenge, another vehicle collided with the side of 
 
 ### Technical Challenge 1: Exploring Space
 
-The exploring challenge was exactly the same as week three's challenge; the cars just had to drive around an enclosure autonomously, detect blobs, and avoid obstacles. Our car was successful in this challenge. Later several cars were placed in the pen together and our car still managed to avoid all collisions. 
+The exploring challenge was exactly the same as week three's challenge; the cars just had to drive around an enclosure autonomously, detect blobs, and avoid obstacles. Our car was successful in this challenge. Later several cars were placed in the pen together and our car still managed to avoid all collisions.
 
 https://www.youtube.com/watch?v=TqN69NZ3m8w&feature=youtu.be
 
@@ -52,11 +52,11 @@ Figure 1: Robot Exploring Space and Avoiding Obstacles
 
 The second technical challenge was a slightly simplified version of week two's final challenge. The cars had to drive up to a fork in the racetrack, detect a blob, and decide which direction to turn based on its color.
 
-Because of the ZED camera malfunctions and how slow all image-related programs were running on our car, my team did not manage to perfect the code for the second technical challenge and were unable to participate. We did get very close to a functional algorithm, and had we been able to test and debug for a longer period of time, our robot most likely would have been able to complete the challenge. 
+Because of the ZED camera malfunctions and how slow all image-related programs were running on our car, my team did not manage to perfect the code for the second technical challenge and were unable to participate. We did get very close to a functional algorithm, and had we been able to test and debug for a longer period of time, our robot most likely would have been able to complete the challenge.
 
 ### Time Trials
 
-The time trials were the first challenge we had to complete with the new car. During the time trials, cars had three attempts to go around the race track as quickly as possible. Cars were first ranked by number of successful runs, then by time. 
+The time trials were the first challenge we had to complete with the new car. During the time trials, cars had three attempts to go around the race track as quickly as possible. Cars were first ranked by number of successful runs, then by time.
 
 ![racetrack](https://cloud.githubusercontent.com/assets/18174572/17789577/d61cab9a-6560-11e6-86b3-74ce04737ddb.png)
 
@@ -70,7 +70,7 @@ Table 1: Time Trial Results
 |-----|-----|-----|---------|
 |35.61 |35.63 |35.33 |**35.33** |
 
-Our fastest lap took the car 35.33 seconds, which earned us third place overall. The time trial results were used to seed cars into rows for the grand prix; first, second, and third place would be in the first row, fourth fifth and sixth in the second, and seventh, eighth, and ninth in the third. 
+Our fastest lap took the car 35.33 seconds, which earned us third place overall. The time trial results were used to seed cars into rows for the grand prix; first, second, and third place would be in the first row, fourth fifth and sixth in the second, and seventh, eighth, and ninth in the third.
 
 ### Heat Race and Grand Prix
 

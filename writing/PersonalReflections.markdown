@@ -4,22 +4,11 @@
 
 The Beaver Works Summer Institute proved to be an invaluable experience for me. I learned more than I could have ever imagined about communication, about the future, and about myself.
 
-Before this program, I neither enjoyed group work nor appreciated its value. For the most part I viewed team projects as a nuisance and did not respect the input of fellow group members. The communication lectures completely reversed my attitude towards working with others. I learned a lot about how to be successful when working with others. 
+Before this program, I neither enjoyed group work nor appreciated its value. For the most part I viewed team projects as a nuisance and did not respect the input of fellow group members. The communication lectures completely reversed my attitude towards working with others. Because of Beaver Works Summer Institute I am now a better listener and I am more aware of other's feelings and the fact that there could be something motivating those feelings that I do not know about.
 
-It also helped 
-In terms of working as a team:
-One thing from the communications lectures that resonated with me
-Building trust through vulnerability
-Super chickens (ask for Ted talk name/stuff)
-In terms of how i think about myself
-Gained confidence in abilities
-At the same time, humbled; there is always someone you can learn from, and that’s not a bad thing
-In terms of my future
-This program will definitely be influential in decisions I make (both for college and for what major I choose)
-The guest lectures exposed us to a myriad of different careers in STEM field
-I realize now that many STEM degrees are highly versatile and that your major does not define your career path
-The biomimetics particularly interested me because I am passionate about biology and robotics/engineering, and it is a really cool niche where people get to work with both fields
-In short, this program alleviated a lot of my stress in terms of  “choosing”
+I also have a much better sense of what I want to do in the future because of this program. I loved every second of learning about and programming the robots and now feel confident that I want to go into computer science and engineering. My only reservation about these majors in the past was my passion for biology, but the guest seminars showed me that STEM degrees are highly versatile and research often overlaps into multiple fields. For example, Sangbae Kim, one of the speakers, works in MIT's biomimetics lab, where they design robots inspired by biological principles. This program was helpful in deciding what I want to do in college and as a career.
+
+BWSI was both an empowering and humbling experience. Heading into the program I was nervous that I would be way behind everyone else as I did not get to complete as much of the pre-program material as I would have liked. However, when I arrived I realized that every single student had different strengths and weaknesses, and it was okay that I was not that comfortable with ROS because I knew Python really well. The program made me a lot more confident in my own abilities, but at the same time it humbled me. I realized that there is always someone I can learn from.
 
 ##Thoughts on Program
 
