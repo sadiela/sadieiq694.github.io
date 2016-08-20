@@ -1,6 +1,6 @@
-# Technical Work: Week Four
+#**Technical Work: Week Four**
 
-##Goals
+##**Goals**
 
 The goal of the final week was for students to bring together everything they had learned in a showcase at Walker Memorial Hall on Friday, August 5. The exhibition consisted of three main sections: two technical challenges and the mini grand prix.
 
@@ -12,7 +12,7 @@ The first part of the mini grand prix consisted of time trials (three attempts p
 
 After the time trials there were three heat races in which three cars would race each other, and a final grand prix with all nine cars on the track. For both of these events the entrance to the short cut was entirely blocked off.
 
-##Approach
+##**Approach**
 
 Our plan going into week four was to direct most of our energy towards the time trials and grand prix race. We already had functional code for the first technical challenge, and, as previously mentioned, it was not necessary to spend time on the second technical challenge as code from the grand prix could be reused for it. The grand prix was what we had to do the most work on and where we dedicated most of our time.  We planned to have two separate programs. One for the time trials and one for the heat races and grand prix.
 
@@ -20,41 +20,37 @@ For the time trials we planned to implement a wall following node. This made sen
 
 For the grand prix we wanted to use a 'greatest open space' algorithm. This method takes a laser scan and compares each of the distances to a threshold value (e.g. two meters). If the point is farther than that distance away from the car, it is marked as free space. The algorithm then looks for the greatest group of free points clumped together and steers the car in the direction of it. The greatest open space algorithm was preferable to both wall following and potential fields. This is because in the grand prix the robots had to deal with multiple moving obstacles. The wall following node only scans one side of the track and would be completely oblivious to potential collisions on its other side, and a potential field algorithm would drive the car backward any time it got close to another robot, making it virtually impossible to pass. With greatest free space the car would be aware of its entire surroundings and would not back up when it encountered another car.
 
-##Process
+##**Process**
 
-###Race Preparation
+###**Race Preparation**
 
 Our carefully planned approach to each component of the final challenge was not strictly followed, which definitely held us back throughout the week. When something was not working, we frantically jumped to a different plan, and if that did not work out either we would switch back. We should have put all of our effort into one program instead of wasting time on several programs that we did not even end up using.
 
-In addition to poor decision making, we had several problems with our car's hardware. The ZED camera malfunctioned on multiple occasions and cost us a lot of time. In addition, every time the car ran any form of vision code, the programs would run extremely slowly and sometimes shut down. We had to connect a computer to it with an ethernet cord whenever we needed to test the car, which was difficult.
+In addition to poor decision making, we had several problems with our car's hardware. The ZED camera malfunctioned on multiple occasions and cost us a lot of time. In addition, every time the car ran any form of vision code, the programs would run extremely slowly and sometimes shut down. We had to connect a computer to it with an ethernet cord whenever we needed to test the car, which caused difficulty as someone had to hold a computer and follow very close to the car.
 
 Eventually because of all the issues surrounding blob detection and the time restraints we were under, our team reevaluated and made a new, much simpler plan. We decided to scratch all code concerning blob detection and use the same code for the time trials and the grand prix. Instead of 'greatest open space,' a potential field algorithm would be implemented. Even though this was not our first choice, we had a very good potential field algorithm from the previous week that just needed to be slightly adjusted for the grand prix challenge.
 
 The major adjustment we made to the potential field algorithm was add an artificial charge pushing it slightly to the right. This made sure that the car would turn right every time it got to the  fork in the racetrack. In addition we vamped up the propelling charge from three to five and the Alaser from .005 to .01. These were the only changes we made to the algorithm.
 
-###Race Day
+###**Race Day**
 
-During the first technical challenge, another vehicle collided with the side of our car (car 7) and our servo (the steering mechanism on the car) overheated. The combination of these events led to the servo dying; car 7 could no longer turn its wheels. So, an hour before the beginning of the time trials, we had to switch cars and use the instructor's. Because our algorithm had been calibrated for our original car, car 7, we were given permission to test on the race track and make necessary adjustments to our code.
+During the first technical challenge, another vehicle collided with the side of our car (car 7) and our servo (the steering mechanism on the car) overheated. The combination of these events led to the servo dying; car 7 could no longer turn its wheels. So, an hour before the beginning of the time trials, we had to switch cars and use the instructor's. Because our algorithm had been calibrated for our original car, we were given permission to test on the race track and make necessary adjustments to our code.
 
-##Results
+##**Results**
 
-### Technical Challenge 1: Exploring Space
+### **Technical Challenge 1: Exploring Space**
 
-The exploring challenge was exactly the same as week three's challenge; the cars just had to drive around an enclosure autonomously, detect blobs, and avoid obstacles. Our car was successful in this challenge. Later several cars were placed in the pen together and our car still managed to avoid all collisions.
-
-https://www.youtube.com/watch?v=TqN69NZ3m8w&feature=youtu.be
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TqN69NZ3m8w" frameborder="0" allowfullscreen></iframe>
+The exploring challenge was exactly the same as week three's challenge; the cars just had to drive around an enclosure autonomously, detect blobs, and avoid obstacles. Our car was successful in this challenge. Later several cars were placed in the pen together and our car still managed to avoid all collisions (although other cars did collide with ours).
 
 Figure 1: Robot Exploring Space and Avoiding Obstacles
 
-### Technical Challenge 2: Making the Correct Turn
+### **Technical Challenge 2: Making the Correct Turn**
 
 The second technical challenge was a slightly simplified version of week two's final challenge. The cars had to drive up to a fork in the racetrack, detect a blob, and decide which direction to turn based on its color.
 
 Because of the ZED camera malfunctions and how slow all image-related programs were running on our car, my team did not manage to perfect the code for the second technical challenge and were unable to participate. We did get very close to a functional algorithm, and had we been able to test and debug for a longer period of time, our robot most likely would have been able to complete the challenge.
 
-### Time Trials
+### **Time Trials**
 
 The time trials were the first challenge we had to complete with the new car. During the time trials, cars had three attempts to go around the race track as quickly as possible. Cars were first ranked by number of successful runs, then by time.
 
@@ -72,10 +68,10 @@ Table 1: Time Trial Results
 
 Our fastest lap took the car 35.33 seconds, which earned us third place overall. The time trial results were used to seed cars into rows for the grand prix; first, second, and third place would be in the first row, fourth fifth and sixth in the second, and seventh, eighth, and ninth in the third.
 
-### Heat Race and Grand Prix
+### **Heat Race and Grand Prix**
 
-After the time trials, groups of three cars raced together to vie for the most advantageous spot in the row. First place in the heat would be on the left, second in the center, and third on the right. Our car was in the first heat with cars 34 and 63 and got second place.
+After the time trials, groups of three cars raced together to vie for the most advantageous spot in the row. First place in the heat would be on the left, second in the center, and third on the right. Our car was in the first heat with cars 34 and 63 and won second place.
 
 In the final grand prix, all nine cars raced the course at the same time. Our car had a rough start and was passed by several cars behind it, but managed to make up a lot of ground during the lap and finished fourth overall, narrowly beating out car 4.
 
-Overall, we could have been more successful had we stuck to our original plan, but our car performed well and we were proud of the results we acheived.
+Overall, we could have been more successful had we stuck to our original plan, but our car performed well and we were proud of the results we achieved.
